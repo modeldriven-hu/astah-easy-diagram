@@ -7,44 +7,15 @@
 		<plugin.install>true</plugin.install>
 		<astah.version>1.1</astah.version>
 		<astah.edition>sysml</astah.edition>
+		<astah.path>/usr/lib/astah_sysml</astah.path>
 	</properties>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hu.modeldriven</groupId>
 	<artifactId>astah-happy-diagram</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
-	<name>%bundle.name</name>
-	<description>%bundle.description</description>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>local_astah_repository</id>
-			<name>Local Astah* Plugin Repository</name>
-			<url>file://${env.M2_HOME}/repository/</url>
-			<layout>default</layout>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-			<releases>
-				<updatePolicy>never</updatePolicy>
-			</releases>
-		</pluginRepository>
-	</pluginRepositories>
-	<repositories>
-		<repository>
-			<id>java.net</id>
-			<name>java.net Maven Repository</name>
-			<url>http://download.java.net/maven/2</url>
-			<releases>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>uk-central</id>
-			<url>http://uk.maven.org/maven2/</url>
-		</repository>
-	</repositories>
+	<name>Astah Happy Diagram</name>
+	<description>A diagramming plugin</description>
 	<reporting>
 		<plugins>
 			<plugin>
@@ -90,9 +61,6 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.4.2</version>
 				<configuration>
-					<systemPropertyVariables>
-						<file.encoding>utf-8</file.encoding>
-					</systemPropertyVariables>
 					<excludes>
 						<exclude>**/TestUtils.java</exclude>
 						<exclude>learning/**/*.java</exclude>
@@ -107,22 +75,6 @@
 				<version>2.4.2</version>
 			</plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.8</version>
-				<configuration>
-					<source>1.8</source>
-					<encoding>UTF-8</encoding>
-					<docencoding>UTF-8</docencoding>
-					<charset>UTF-8</charset>
-					<show>protected</show>
-					<links>
-						<link>http://java.sun.com/javase/ja/6/docs/ja/api/</link>
-						<link>http://members.change-vision.com/javadoc/astah-api/6_2/api/ja/doc/javadoc/</link>
-					</links>
-				</configuration>
-			</plugin>
 		</plugins>
 	</reporting>
 	<build>
@@ -142,6 +94,7 @@
 		</testResources>
 		<plugins>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<version>2.4</version>
 				<executions>
@@ -160,6 +113,7 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
@@ -184,7 +138,7 @@
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
-				<version>3.3.0</version>
+				<version>3.5.1</version>
 				<extensions>true</extensions>
 				<executions>
 					<execution>
@@ -258,7 +212,7 @@
 			<artifactId>astah-api</artifactId>
 			<version>${astah.version}</version>
 			<scope>system</scope>
-			<systemPath>${astahPath}/astah-api.jar</systemPath>
+			<systemPath>${astah.path}/astah-api.jar</systemPath>
 		</dependency>
 		<dependency>
 			<groupId>org.osgi</groupId>
@@ -275,7 +229,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.10</version>
+			<version>4.13.2</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
