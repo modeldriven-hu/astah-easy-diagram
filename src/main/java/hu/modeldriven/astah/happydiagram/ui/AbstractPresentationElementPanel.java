@@ -44,7 +44,7 @@ public class AbstractPresentationElementPanel extends javax.swing.JPanel {
         straightenLineButton = new javax.swing.JButton();
         matchAllPointsButton = new javax.swing.JButton();
         matchAllExceptEndPointsButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        resetItemFlowButton = new javax.swing.JButton();
 
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.PAGE_AXIS));
 
@@ -106,8 +106,8 @@ public class AbstractPresentationElementPanel extends javax.swing.JPanel {
         matchAllExceptEndPointsButton.setText("Match all except end points");
         linePanel.add(matchAllExceptEndPointsButton);
 
-        jButton1.setText("Reset item flow");
-        linePanel.add(jButton1);
+        resetItemFlowButton.setText("Reset item flow");
+        linePanel.add(resetItemFlowButton);
 
         add(linePanel);
     }// </editor-fold>//GEN-END:initComponents
@@ -122,7 +122,6 @@ public class AbstractPresentationElementPanel extends javax.swing.JPanel {
     private javax.swing.JPanel coordinatePanel;
     protected javax.swing.JSpinner heightInputField;
     private javax.swing.JPanel infoPanel;
-    protected javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -132,6 +131,7 @@ public class AbstractPresentationElementPanel extends javax.swing.JPanel {
     private javax.swing.JPanel linePanel;
     protected javax.swing.JButton matchAllExceptEndPointsButton;
     protected javax.swing.JButton matchAllPointsButton;
+    protected javax.swing.JButton resetItemFlowButton;
     protected javax.swing.JLabel selectedItemLabel;
     protected javax.swing.JButton snapToPixelButton;
     protected javax.swing.JButton straightenLineButton;
