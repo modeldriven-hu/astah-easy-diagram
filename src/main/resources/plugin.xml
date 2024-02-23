@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
-   <extension point="com.change_vision.astah.ui.actionSets">
-      <actionSet
-            label="%action_set_label"
-            visible="true"
-            id="hu.modeldriven.astah-happy-diagram.actionSet">
-         <menu
-               id="astah-happy-diagram"
-               label="%menu_group"
-               path="tool/astah-happy-diagram">
-         </menu>
-         <action
-			   label="%menu_label"
-               icon="icons/sample.gif"
-               class="hu.modeldriven.astah.happydiagram.TemplateAction"
-               tooltip="%menu_tooltip"
-               menubarPath="tool/astah-happy-diagram/"
-               id="astah-happy-diagram">
-         </action>
-     </actionSet>
-   </extension>
+    <extension point="com.change_vision.astah.ui.view">
+        <view
+                id="hu.modeldriven.astah.happydiagram.HappyDiagramView"
+                type="extraTab"
+                class="hu.modeldriven.astah.happydiagram.HappyDiagramView"/>
+    </extension>
 </plugin>
