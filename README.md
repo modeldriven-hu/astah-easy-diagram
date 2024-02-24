@@ -1,10 +1,10 @@
-# Astah Happy Diagram PlugIn
+# Astah Easy Diagram PlugIn
 
 A plugin to make diagram editing easier and more fun. 
 
 # Screenshot
 
-![image](https://github.com/modeldriven-hu/astah-happy-diagram/assets/8182138/be8ce151-f1b3-4ced-8c50-f23b307b54bf)
+![image](https://github.com/modeldriven-hu/astah-easy-diagram/assets/8182138/54b7bd49-fcb8-4c6c-af30-b9455b8511db)
 
 # Supported features
 
