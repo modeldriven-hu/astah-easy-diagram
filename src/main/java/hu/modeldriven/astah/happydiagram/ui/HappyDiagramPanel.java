@@ -19,16 +19,28 @@ public class HappyDiagramPanel extends AbstractHappyDiagramPanel {
     }
 
     private void initUIComponents() {
-        applyButton.addActionListener(e -> eventBus.publish(new ChangeBoundsRequestedEvent(
-                Double.parseDouble(leftInputField.getText()),
-                Double.parseDouble(topInputField.getText()),
-                Double.parseDouble(widthInputField.getText()),
-                Double.parseDouble(heightInputField.getText())
-        )));
+
+        leftInputField.addActionListener(e -> notifyBoundsChange());
+        topInputField.addActionListener(e -> notifyBoundsChange());
+        widthInputField.addActionListener(e -> notifyBoundsChange());
+        heightInputField.addActionListener(e -> notifyBoundsChange());
+
+        applyButton.addActionListener(e -> notifyBoundsChange());
 
         snapToPixelButton.addActionListener(e -> eventBus.publish(new SnapToPixelRequestedEvent()));
         straightenLineButton.addActionListener(e -> eventBus.publish(new StraightenLineRequestedEvent()));
         resetItemFlowButton.addActionListener(e -> eventBus.publish(new ResetItemFlowRequestedEvent()));
+    }
+
+    private void notifyBoundsChange(){
+        eventBus.publish(new ChangeBoundsRequestedEvent(
+                Double.parseDouble(leftInputField.getText()),
+                Double.parseDouble(topInputField.getText()),
+                Double.parseDouble(widthInputField.getText()),
+                Double.parseDouble(heightInputField.getText())
+        ));
+
+        eventBus.publish(new DiagramSelectionChangedEvent());
     }
 
     private void initUseCases() {
