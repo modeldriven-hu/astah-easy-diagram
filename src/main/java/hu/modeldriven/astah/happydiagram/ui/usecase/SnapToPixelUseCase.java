@@ -1,5 +1,6 @@
 package hu.modeldriven.astah.happydiagram.ui.usecase;
 
+import com.change_vision.jude.api.inf.presentation.ILinkPresentation;
 import hu.modeldriven.astah.core.AstahRepresentation;
 import hu.modeldriven.astah.core.transaction.AstahTransaction;
 import hu.modeldriven.astah.core.transaction.TransactionFailedException;
@@ -10,7 +11,9 @@ import hu.modeldriven.core.eventbus.Event;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.eventbus.EventHandler;
 
+import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,6 +45,10 @@ public class SnapToPixelUseCase implements EventHandler<SnapToPixelRequestedEven
                     astah.setBounds(node, newRectangle);
                 });
 
+                astah.selectedLinks().forEach(link -> {
+                    astah.setPoints(link, pixelSnappedLink(link));
+                });
+
             });
 
         } catch (TransactionFailedException e) {
@@ -49,6 +56,20 @@ public class SnapToPixelUseCase implements EventHandler<SnapToPixelRequestedEven
         }
 
         eventBus.publish(new DiagramSelectionChangedEvent());
+    }
+
+    private Point2D[] pixelSnappedLink(ILinkPresentation link){
+
+        List<Point2D> points = new ArrayList<>();
+
+        for (Point2D point : link.getAllPoints()){
+            points.add(new Point2D.Double(
+               Math.ceil(point.getX()),
+               Math.ceil(point.getY())
+            ));
+        }
+
+        return points.toArray(new Point2D[points.size()]);
     }
 
     private Rectangle2D pixelSnappedRect(Rectangle2D rectangle) {

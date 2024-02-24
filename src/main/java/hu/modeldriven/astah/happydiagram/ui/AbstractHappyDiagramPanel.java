@@ -6,30 +6,23 @@ package hu.modeldriven.astah.happydiagram.ui;
 
 import net.miginfocom.swing.MigLayout;
 
+import javax.swing.*;
+
 /**
  * @author zsolt
  */
 public class AbstractHappyDiagramPanel extends javax.swing.JPanel {
 
-    protected javax.swing.JButton applyButton;
-    protected javax.swing.JTextField heightInputField;
-    protected javax.swing.JTextField leftInputField;
-    protected javax.swing.JButton matchAllExceptEndPointsButton;
-    protected javax.swing.JButton matchAllPointsButton;
-    protected javax.swing.JButton resetItemFlowButton;
-    protected javax.swing.JLabel selectedItemLabel;
-    protected javax.swing.JButton snapToPixelButton;
-    protected javax.swing.JButton straightenLineButton;
-    protected javax.swing.JTextField topInputField;
-    protected javax.swing.JTextField widthInputField;
-    private javax.swing.JPanel coordinatePanel;
-    private javax.swing.JPanel infoPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JPanel linePanel;
+    protected JButton applyButton;
+    protected JTextField heightInputField;
+    protected JTextField leftInputField;
+    protected JButton matchAllExceptEndPointsButton;
+    protected JButton matchAllPointsButton;
+    protected JButton resetItemFlowButton;
+    protected JButton snapToPixelButton;
+    protected JButton straightenLineButton;
+    protected JTextField topInputField;
+    protected JTextField widthInputField;
 
     public AbstractHappyDiagramPanel() {
         initComponents();
@@ -37,20 +30,17 @@ public class AbstractHappyDiagramPanel extends javax.swing.JPanel {
 
     private void initComponents() {
 
-        infoPanel = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        selectedItemLabel = new javax.swing.JLabel();
-        coordinatePanel = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        JPanel coordinatePanel = new javax.swing.JPanel();
+        JLabel jLabel2 = new javax.swing.JLabel();
         leftInputField = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        JLabel jLabel3 = new javax.swing.JLabel();
         topInputField = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        JLabel jLabel4 = new javax.swing.JLabel();
         widthInputField = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        JLabel jLabel5 = new javax.swing.JLabel();
         heightInputField = new javax.swing.JTextField();
         applyButton = new javax.swing.JButton();
-        linePanel = new javax.swing.JPanel();
+        JPanel linePanel = new javax.swing.JPanel();
         snapToPixelButton = new javax.swing.JButton();
         straightenLineButton = new javax.swing.JButton();
         matchAllPointsButton = new javax.swing.JButton();
@@ -62,17 +52,6 @@ public class AbstractHappyDiagramPanel extends javax.swing.JPanel {
                 "[fill]",
                 "[][][]"
         ));
-
-        infoPanel.setBackground(new java.awt.Color(255, 255, 255));
-        infoPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEADING));
-
-        jLabel1.setText("Selected item:");
-        infoPanel.add(jLabel1);
-
-        selectedItemLabel.setText("None");
-        infoPanel.add(selectedItemLabel);
-
-        add(infoPanel, "cell 0 0");
 
         coordinatePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Coordinate system"));
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 10);
@@ -99,7 +78,7 @@ public class AbstractHappyDiagramPanel extends javax.swing.JPanel {
         applyButton.setText("Apply");
         coordinatePanel.add(applyButton);
 
-        add(coordinatePanel, "cell 0 1");
+        add(coordinatePanel, "cell 0 0");
 
         linePanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEADING));
 
@@ -112,6 +91,6 @@ public class AbstractHappyDiagramPanel extends javax.swing.JPanel {
         resetItemFlowButton.setText("Reset item flow");
         linePanel.add(resetItemFlowButton);
 
-        add(linePanel, "cell 0 2");
+        add(linePanel, "cell 0 1");
     }
 }
