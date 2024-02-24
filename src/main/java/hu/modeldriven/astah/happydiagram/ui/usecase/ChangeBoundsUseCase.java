@@ -5,11 +5,11 @@ import hu.modeldriven.astah.core.AstahRepresentation;
 import hu.modeldriven.astah.core.transaction.AstahTransaction;
 import hu.modeldriven.astah.core.transaction.TransactionFailedException;
 import hu.modeldriven.astah.happydiagram.ui.event.ChangeBoundsRequestedEvent;
-import hu.modeldriven.astah.happydiagram.ui.event.ExceptionOccurredEvent;
 import hu.modeldriven.core.eventbus.Event;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.eventbus.EventHandler;
 
+import javax.swing.*;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,7 +39,10 @@ public class ChangeBoundsUseCase implements EventHandler<ChangeBoundsRequestedEv
                     astah.setBounds(node, event.bounds());
                 });
             } catch (TransactionFailedException e) {
-                eventBus.publish(new ExceptionOccurredEvent(new IllegalArgumentException("Minimum size reached, use bigger value!")));
+                JOptionPane.showMessageDialog(null,
+                        "The width or height you set is smaller than the minimum size, use a larger number!",
+                        "Wrong width or height",
+                        JOptionPane.ERROR_MESSAGE);
             }
         });
 

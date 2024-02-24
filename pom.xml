@@ -8,6 +8,7 @@
 		<astah.version>1.1</astah.version>
 		<astah.edition>sysml</astah.edition>
 		<astah.path>/usr/lib/astah_sysml</astah.path>
+		<miglayout.version>3.7.4</miglayout.version>
 	</properties>
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hu.modeldriven</groupId>
@@ -225,6 +226,11 @@
 			<artifactId>org.osgi.compendium</artifactId>
 			<version>4.2.0</version>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.miglayout</groupId>
+			<artifactId>miglayout</artifactId>
+			<version>${miglayout.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

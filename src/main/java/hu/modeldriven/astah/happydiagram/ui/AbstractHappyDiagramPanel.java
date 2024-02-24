@@ -4,6 +4,8 @@
  */
 package hu.modeldriven.astah.happydiagram.ui;
 
+import net.miginfocom.swing.MigLayout;
+
 /**
  * @author zsolt
  */
@@ -55,7 +57,11 @@ public class AbstractHappyDiagramPanel extends javax.swing.JPanel {
         matchAllExceptEndPointsButton = new javax.swing.JButton();
         resetItemFlowButton = new javax.swing.JButton();
 
-        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.PAGE_AXIS));
+        setLayout(new MigLayout(
+                "fillx, hidemode 3",
+                "[fill]",
+                "[][][]"
+        ));
 
         infoPanel.setBackground(new java.awt.Color(255, 255, 255));
         infoPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEADING));
@@ -66,7 +72,7 @@ public class AbstractHappyDiagramPanel extends javax.swing.JPanel {
         selectedItemLabel.setText("None");
         infoPanel.add(selectedItemLabel);
 
-        add(infoPanel);
+        add(infoPanel, "cell 0 0");
 
         coordinatePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Coordinate system"));
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 10);
@@ -93,7 +99,7 @@ public class AbstractHappyDiagramPanel extends javax.swing.JPanel {
         applyButton.setText("Apply");
         coordinatePanel.add(applyButton);
 
-        add(coordinatePanel);
+        add(coordinatePanel, "cell 0 1");
 
         linePanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEADING));
 
@@ -103,15 +109,9 @@ public class AbstractHappyDiagramPanel extends javax.swing.JPanel {
         straightenLineButton.setText("Straighten line");
         linePanel.add(straightenLineButton);
 
-        matchAllPointsButton.setText("Match all points");
-        linePanel.add(matchAllPointsButton);
-
-        matchAllExceptEndPointsButton.setText("Match all except end points");
-        linePanel.add(matchAllExceptEndPointsButton);
-
         resetItemFlowButton.setText("Reset item flow");
         linePanel.add(resetItemFlowButton);
 
-        add(linePanel);
+        add(linePanel, "cell 0 2");
     }
 }

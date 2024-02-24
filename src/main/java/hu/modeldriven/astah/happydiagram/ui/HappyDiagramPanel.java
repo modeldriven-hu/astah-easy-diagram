@@ -28,8 +28,6 @@ public class HappyDiagramPanel extends AbstractHappyDiagramPanel {
 
         snapToPixelButton.addActionListener(e -> eventBus.publish(new SnapToPixelRequestedEvent()));
         straightenLineButton.addActionListener(e -> eventBus.publish(new StraightenLineRequestedEvent()));
-        matchAllPointsButton.addActionListener(e -> eventBus.publish(new MatchAllPointsRequestedEvent()));
-        matchAllExceptEndPointsButton.addActionListener(e -> eventBus.publish(new MatchAllExceptEndPointsRequest()));
         resetItemFlowButton.addActionListener(e -> eventBus.publish(new ResetItemFlowRequestedEvent()));
     }
 
@@ -39,6 +37,7 @@ public class HappyDiagramPanel extends AbstractHappyDiagramPanel {
         this.eventBus.subscribe(new UpdateBoundariesOnSelectionUseCase(astah, leftInputField, topInputField, widthInputField, heightInputField));
         this.eventBus.subscribe(new SnapToPixelUseCase(eventBus, astah));
         this.eventBus.subscribe(new StraightenLineUseCase(eventBus, astah));
+        this.eventBus.subscribe(new ResetItemFlowUseCase(eventBus, astah));
     }
 
 }
