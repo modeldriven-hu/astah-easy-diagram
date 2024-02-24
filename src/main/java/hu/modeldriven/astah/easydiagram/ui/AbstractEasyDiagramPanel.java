@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package hu.modeldriven.astah.happydiagram.ui;
+package hu.modeldriven.astah.easydiagram.ui;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -11,7 +11,7 @@ import javax.swing.*;
 /**
  * @author zsolt
  */
-public class AbstractHappyDiagramPanel extends javax.swing.JPanel {
+public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
 
     protected JButton applyButton;
     protected JTextField heightInputField;
@@ -24,7 +24,7 @@ public class AbstractHappyDiagramPanel extends javax.swing.JPanel {
     protected JTextField topInputField;
     protected JTextField widthInputField;
 
-    public AbstractHappyDiagramPanel() {
+    public AbstractEasyDiagramPanel() {
         initComponents();
     }
 

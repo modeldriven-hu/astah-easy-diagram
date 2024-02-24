@@ -1,6 +1,6 @@
-package hu.modeldriven.astah.happydiagram.ui.usecase;
+package hu.modeldriven.astah.easydiagram.ui.usecase;
 
-import hu.modeldriven.astah.happydiagram.ui.event.ExceptionOccurredEvent;
+import hu.modeldriven.astah.easydiagram.ui.event.ExceptionOccurredEvent;
 import hu.modeldriven.core.eventbus.Event;
 import hu.modeldriven.core.eventbus.EventHandler;
 

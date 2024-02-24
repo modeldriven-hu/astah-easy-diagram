@@ -1,6 +1,4 @@
-package hu.modeldriven.astah.happydiagram;
-
-import static org.junit.Assert.*;
+package hu.modeldriven.astah.easydiagram;
 
 import org.junit.Test;
 

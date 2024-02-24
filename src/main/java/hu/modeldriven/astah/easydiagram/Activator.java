@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.happydiagram;
+package hu.modeldriven.astah.easydiagram;
 
 
 import org.osgi.framework.BundleActivator;

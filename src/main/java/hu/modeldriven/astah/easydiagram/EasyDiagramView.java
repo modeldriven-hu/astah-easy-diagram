@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.happydiagram;
+package hu.modeldriven.astah.easydiagram;
 
 import com.change_vision.jude.api.inf.AstahAPI;
 import com.change_vision.jude.api.inf.ui.IPluginExtraTabView;
@@ -6,8 +6,8 @@ import com.change_vision.jude.api.inf.ui.ISelectionListener;
 import com.change_vision.jude.api.inf.view.IDiagramViewManager;
 import com.change_vision.jude.api.inf.view.IEntitySelectionEvent;
 import com.change_vision.jude.api.inf.view.IEntitySelectionListener;
-import hu.modeldriven.astah.happydiagram.ui.HappyDiagramPanel;
-import hu.modeldriven.astah.happydiagram.ui.event.DiagramSelectionChangedEvent;
+import hu.modeldriven.astah.easydiagram.ui.EasyDiagramPanel;
+import hu.modeldriven.astah.easydiagram.ui.event.DiagramSelectionChangedEvent;
 import hu.modeldriven.core.eventbus.EventBus;
 
 import javax.swing.*;
@@ -15,11 +15,11 @@ import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;
 
-public class HappyDiagramView extends JPanel implements IPluginExtraTabView, IEntitySelectionListener {
+public class EasyDiagramView extends JPanel implements IPluginExtraTabView, IEntitySelectionListener {
 
     private final EventBus eventBus;
 
-    public HappyDiagramView() {
+    public EasyDiagramView() {
         this.eventBus = new EventBus();
         initComponents();
     }
@@ -42,7 +42,7 @@ public class HappyDiagramView extends JPanel implements IPluginExtraTabView, IEn
             e.printStackTrace();
         }
 
-        return new HappyDiagramPanel(eventBus);
+        return new EasyDiagramPanel(eventBus);
     }
 
     @Override
@@ -57,12 +57,12 @@ public class HappyDiagramView extends JPanel implements IPluginExtraTabView, IEn
 
     @Override
     public String getDescription() {
-        return "Happy Diagram View";
+        return "Easy Diagram View";
     }
 
     @Override
     public String getTitle() {
-        return "Happy Diagram";
+        return "Easy Diagram";
     }
 
     public void activated() {

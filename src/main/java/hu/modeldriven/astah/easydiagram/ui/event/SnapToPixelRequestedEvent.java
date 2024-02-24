@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.happydiagram.ui.event;
+package hu.modeldriven.astah.easydiagram.ui.event;
 
 import hu.modeldriven.core.eventbus.Event;
 

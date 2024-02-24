@@ -2,8 +2,8 @@
 <plugin>
     <extension point="com.change_vision.astah.ui.view">
         <view
-                id="hu.modeldriven.astah.happydiagram.HappyDiagramView"
+                id="hu.modeldriven.astah.easydiagram.EasyDiagramView"
                 type="extraTab"
-                class="hu.modeldriven.astah.happydiagram.HappyDiagramView"/>
+                class="hu.modeldriven.astah.easydiagram.EasyDiagramView"/>
     </extension>
 </plugin>

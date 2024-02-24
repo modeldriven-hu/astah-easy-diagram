@@ -1,12 +1,12 @@
-package hu.modeldriven.astah.happydiagram.ui.usecase;
+package hu.modeldriven.astah.easydiagram.ui.usecase;
 
 import com.change_vision.jude.api.inf.presentation.ILinkPresentation;
 import hu.modeldriven.astah.core.AstahRepresentation;
 import hu.modeldriven.astah.core.transaction.AstahTransaction;
 import hu.modeldriven.astah.core.transaction.TransactionFailedException;
-import hu.modeldriven.astah.happydiagram.ui.event.DiagramSelectionChangedEvent;
-import hu.modeldriven.astah.happydiagram.ui.event.ExceptionOccurredEvent;
-import hu.modeldriven.astah.happydiagram.ui.event.SnapToPixelRequestedEvent;
+import hu.modeldriven.astah.easydiagram.ui.event.DiagramSelectionChangedEvent;
+import hu.modeldriven.astah.easydiagram.ui.event.ExceptionOccurredEvent;
+import hu.modeldriven.astah.easydiagram.ui.event.SnapToPixelRequestedEvent;
 import hu.modeldriven.core.eventbus.Event;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.eventbus.EventHandler;

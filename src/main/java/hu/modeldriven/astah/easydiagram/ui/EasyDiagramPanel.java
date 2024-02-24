@@ -1,16 +1,16 @@
-package hu.modeldriven.astah.happydiagram.ui;
+package hu.modeldriven.astah.easydiagram.ui;
 
 import hu.modeldriven.astah.core.AstahRepresentation;
-import hu.modeldriven.astah.happydiagram.ui.event.*;
-import hu.modeldriven.astah.happydiagram.ui.usecase.*;
+import hu.modeldriven.astah.easydiagram.ui.event.*;
+import hu.modeldriven.astah.easydiagram.ui.usecase.*;
 import hu.modeldriven.core.eventbus.EventBus;
 
-public class HappyDiagramPanel extends AbstractHappyDiagramPanel {
+public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
 
     private final EventBus eventBus;
     private final AstahRepresentation astah;
 
-    public HappyDiagramPanel(EventBus eventBus) {
+    public EasyDiagramPanel(EventBus eventBus) {
         super();
         this.eventBus = eventBus;
         this.astah = new AstahRepresentation();
