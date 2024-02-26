@@ -37,6 +37,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
 
     private void notifyBoundsChange(){
         try {
+
             eventBus.publish(new ChangeBoundsRequestedEvent(
                     Double.parseDouble(leftInputField.getText()),
                     Double.parseDouble(topInputField.getText()),
@@ -45,6 +46,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
             ));
 
             eventBus.publish(new DiagramSelectionChangedEvent());
+
         } catch (NumberFormatException | NullPointerException e){
             JOptionPane.showMessageDialog(null,
                     "All field must be a number",
