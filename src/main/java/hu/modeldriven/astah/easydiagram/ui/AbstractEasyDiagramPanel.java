@@ -11,7 +11,7 @@ import javax.swing.*;
 /**
  * @author zsolt
  */
-public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
+public class AbstractEasyDiagramPanel extends JPanel {
 
     protected JButton applyButton;
     protected JTextField heightInputField;
@@ -21,6 +21,7 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
     protected JButton resetItemFlowButton;
     protected JButton snapToPixelButton;
     protected JButton straightenLineButton;
+    protected JButton layoutButton;
     protected JTextField topInputField;
     protected JTextField widthInputField;
 
@@ -30,22 +31,23 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
 
     private void initComponents() {
 
-        JPanel coordinatePanel = new javax.swing.JPanel();
-        JLabel jLabel2 = new javax.swing.JLabel();
-        leftInputField = new javax.swing.JTextField();
-        JLabel jLabel3 = new javax.swing.JLabel();
-        topInputField = new javax.swing.JTextField();
-        JLabel jLabel4 = new javax.swing.JLabel();
-        widthInputField = new javax.swing.JTextField();
-        JLabel jLabel5 = new javax.swing.JLabel();
-        heightInputField = new javax.swing.JTextField();
-        applyButton = new javax.swing.JButton();
-        JPanel linePanel = new javax.swing.JPanel();
-        snapToPixelButton = new javax.swing.JButton();
-        straightenLineButton = new javax.swing.JButton();
-        matchAllPointsButton = new javax.swing.JButton();
-        matchAllExceptEndPointsButton = new javax.swing.JButton();
-        resetItemFlowButton = new javax.swing.JButton();
+        JPanel coordinatePanel = new JPanel();
+        JLabel jLabel2 = new JLabel();
+        leftInputField = new JTextField();
+        JLabel jLabel3 = new JLabel();
+        topInputField = new JTextField();
+        JLabel jLabel4 = new JLabel();
+        widthInputField = new JTextField();
+        JLabel jLabel5 = new JLabel();
+        heightInputField = new JTextField();
+        applyButton = new JButton();
+        JPanel linePanel = new JPanel();
+        snapToPixelButton = new JButton();
+        straightenLineButton = new JButton();
+        matchAllPointsButton = new JButton();
+        matchAllExceptEndPointsButton = new JButton();
+        resetItemFlowButton = new JButton();
+        layoutButton = new JButton();
 
         setLayout(new MigLayout(
                 "fillx, hidemode 3",
@@ -53,7 +55,7 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
                 "[][][]"
         ));
 
-        coordinatePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Coordinate system"));
+        coordinatePanel.setBorder(BorderFactory.createTitledBorder("Coordinate system"));
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 10);
         flowLayout1.setAlignOnBaseline(true);
         coordinatePanel.setLayout(flowLayout1);
@@ -90,6 +92,9 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
 
         resetItemFlowButton.setText("Reset item flow");
         linePanel.add(resetItemFlowButton);
+
+        layoutButton.setText("Layout diagram");
+        linePanel.add(layoutButton);
 
         add(linePanel, "cell 0 1");
     }

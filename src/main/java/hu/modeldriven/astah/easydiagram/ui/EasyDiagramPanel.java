@@ -7,8 +7,8 @@ import hu.modeldriven.core.eventbus.EventBus;
 
 public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
 
-    private final EventBus eventBus;
-    private final AstahRepresentation astah;
+    private final transient EventBus eventBus;
+    private final transient AstahRepresentation astah;
 
     public EasyDiagramPanel(EventBus eventBus) {
         super();
@@ -30,6 +30,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
         snapToPixelButton.addActionListener(e -> eventBus.publish(new SnapToPixelRequestedEvent()));
         straightenLineButton.addActionListener(e -> eventBus.publish(new StraightenLineRequestedEvent()));
         resetItemFlowButton.addActionListener(e -> eventBus.publish(new ResetItemFlowRequestedEvent()));
+        layoutButton.addActionListener(e -> eventBus.publish(new LayoutRequestedEvent()));
     }
 
     private void notifyBoundsChange(){
@@ -50,6 +51,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
         this.eventBus.subscribe(new SnapToPixelUseCase(eventBus, astah));
         this.eventBus.subscribe(new StraightenLineUseCase(eventBus, astah));
         this.eventBus.subscribe(new ResetItemFlowUseCase(eventBus, astah));
+        this.eventBus.subscribe(new LayoutDiagramUseCase(eventBus, astah));
     }
 
 }
