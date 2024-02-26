@@ -29,10 +29,12 @@ public class AstahRepresentation {
 
     public List<IPresentation> selectedPresentations() throws AstahRuntimeException {
         try {
-            return Arrays.asList(AstahAPI.getAstahAPI()
+            return Arrays.stream(AstahAPI.getAstahAPI()
                     .getViewManager()
                     .getDiagramViewManager()
-                    .getSelectedPresentations());
+                    .getSelectedPresentations())
+                    .filter(e -> !(e.getModel() instanceof IDiagram))
+                    .collect(Collectors.toList());
         } catch (Exception e) {
             throw new AstahRuntimeException(e);
         }
