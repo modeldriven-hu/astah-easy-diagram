@@ -5,6 +5,9 @@ import hu.modeldriven.astah.easydiagram.ui.event.*;
 import hu.modeldriven.astah.easydiagram.ui.usecase.*;
 import hu.modeldriven.core.eventbus.EventBus;
 
+import javax.swing.*;
+import java.io.IOException;
+
 public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
 
     private final EventBus eventBus;
@@ -33,14 +36,21 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
     }
 
     private void notifyBoundsChange(){
-        eventBus.publish(new ChangeBoundsRequestedEvent(
-                Double.parseDouble(leftInputField.getText()),
-                Double.parseDouble(topInputField.getText()),
-                Double.parseDouble(widthInputField.getText()),
-                Double.parseDouble(heightInputField.getText())
-        ));
+        try {
+            eventBus.publish(new ChangeBoundsRequestedEvent(
+                    Double.parseDouble(leftInputField.getText()),
+                    Double.parseDouble(topInputField.getText()),
+                    Double.parseDouble(widthInputField.getText()),
+                    Double.parseDouble(heightInputField.getText())
+            ));
 
-        eventBus.publish(new DiagramSelectionChangedEvent());
+            eventBus.publish(new DiagramSelectionChangedEvent());
+        } catch (NumberFormatException | NullPointerException e){
+            JOptionPane.showMessageDialog(null,
+                    "All field must be a number",
+                    "Wrong input",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private void initUseCases() {
