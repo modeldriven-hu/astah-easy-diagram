@@ -93,7 +93,7 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
         resetItemFlowButton.setText("Reset item flow");
         linePanel.add(resetItemFlowButton);
 
-        saveRestoreButton.setText("Save/restore position");
+        saveRestoreButton.setText("Save position");
         linePanel.add(saveRestoreButton);
 
         add(linePanel, "cell 0 1");

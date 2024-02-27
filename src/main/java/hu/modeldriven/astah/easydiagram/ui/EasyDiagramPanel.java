@@ -62,7 +62,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
         this.eventBus.subscribe(new SnapToPixelUseCase(eventBus, astah));
         this.eventBus.subscribe(new StraightenLineUseCase(eventBus, astah));
         this.eventBus.subscribe(new ResetItemFlowUseCase(eventBus, astah));
-        this.eventBus.subscribe(new SaveRestorePositionUseCase(eventBus, astah));
+        this.eventBus.subscribe(new SaveRestorePositionUseCase(eventBus, astah, saveRestoreButton));
     }
 
 }
