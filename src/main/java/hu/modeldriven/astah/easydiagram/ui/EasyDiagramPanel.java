@@ -9,8 +9,8 @@ import javax.swing.*;
 
 public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
 
-    private final EventBus eventBus;
-    private final AstahRepresentation astah;
+    private final transient EventBus eventBus;
+    private final transient AstahRepresentation astah;
 
     public EasyDiagramPanel(EventBus eventBus) {
         super();
@@ -35,7 +35,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
         saveRestoreButton.addActionListener(e -> eventBus.publish(new SaveRestoreRequestedEvent()));
     }
 
-    private void notifyBoundsChange(){
+    private void notifyBoundsChange() {
         try {
 
             eventBus.publish(new ChangeBoundsRequestedEvent(
@@ -47,7 +47,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
 
             eventBus.publish(new DiagramSelectionChangedEvent());
 
-        } catch (NumberFormatException | NullPointerException e){
+        } catch (NumberFormatException | NullPointerException e) {
             JOptionPane.showMessageDialog(null,
                     "All field must be a number",
                     "Wrong input",

@@ -58,14 +58,14 @@ public class SnapToPixelUseCase implements EventHandler<SnapToPixelRequestedEven
         eventBus.publish(new DiagramSelectionChangedEvent());
     }
 
-    private Point2D[] pixelSnappedLink(ILinkPresentation link){
+    private Point2D[] pixelSnappedLink(ILinkPresentation link) {
 
         List<Point2D> points = new ArrayList<>();
 
-        for (Point2D point : link.getAllPoints()){
+        for (Point2D point : link.getAllPoints()) {
             points.add(new Point2D.Double(
-               Math.ceil(point.getX()),
-               Math.ceil(point.getY())
+                    Math.ceil(point.getX()),
+                    Math.ceil(point.getY())
             ));
         }
 

@@ -15,7 +15,6 @@ import hu.modeldriven.core.eventbus.EventHandler;
 import javax.swing.*;
 import java.awt.geom.Point2D;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class SaveRestorePositionUseCase implements EventHandler<SaveRestoreRequestedEvent> {
     private final EventBus eventBus;
@@ -27,9 +26,9 @@ public class SaveRestorePositionUseCase implements EventHandler<SaveRestoreReque
 
     private Status status = Status.EMPTY;
 
-    private Map<String, Point2D> childNodesCoordinates = new HashMap<>();
+    private final Map<String, Point2D> childNodesCoordinates = new HashMap<>();
 
-    private Map<String, Point2D[]> childLinkCoordinates = new HashMap<>();
+    private final Map<String, Point2D[]> childLinkCoordinates = new HashMap<>();
 
 
     public SaveRestorePositionUseCase(EventBus eventBus, AstahRepresentation astah, JButton button) {
@@ -66,10 +65,10 @@ public class SaveRestorePositionUseCase implements EventHandler<SaveRestoreReque
             );
         }
 
-        for (ILinkPresentation linkPresentation : selectedNode.getLinks()){
+        for (ILinkPresentation linkPresentation : selectedNode.getLinks()) {
             childLinkCoordinates.put(
-              linkPresentation.getID(),
-              clone(linkPresentation.getAllPoints())
+                    linkPresentation.getID(),
+                    clone(linkPresentation.getAllPoints())
             );
         }
 
@@ -78,7 +77,7 @@ public class SaveRestorePositionUseCase implements EventHandler<SaveRestoreReque
         this.status = Status.SAVED;
     }
 
-    private Point2D[] clone(Point2D[] source){
+    private Point2D[] clone(Point2D[] source) {
         return Arrays.stream(source)
                 .map(p -> new Point2D.Double(p.getX(), p.getY()))
                 .toArray(Point2D.Double[]::new);
@@ -107,6 +106,7 @@ public class SaveRestorePositionUseCase implements EventHandler<SaveRestoreReque
                     }
 
                 } catch (InvalidEditingException e) {
+                    this.clear();
                     throw new AstahRuntimeException(e);
                 }
 

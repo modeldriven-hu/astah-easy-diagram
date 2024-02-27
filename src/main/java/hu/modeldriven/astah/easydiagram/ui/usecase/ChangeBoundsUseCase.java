@@ -35,9 +35,7 @@ public class ChangeBoundsUseCase implements EventHandler<ChangeBoundsRequestedEv
             AstahTransaction transaction = new AstahTransaction();
 
             try {
-                transaction.execute(() -> {
-                    astah.setBounds(node, event.bounds());
-                });
+                transaction.execute(() -> astah.setBounds(node, event.bounds()));
             } catch (TransactionFailedException e) {
                 JOptionPane.showMessageDialog(null,
                         "The width or height you set is smaller than the minimum size, use a larger number!",
