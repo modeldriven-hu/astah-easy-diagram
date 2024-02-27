@@ -12,3 +12,5 @@ A plugin to make diagram editing easier and more fun.
 - Straighten line: keep minimal amount of points
 - Snap to pixel: set coordinates and size so that it aligns to pixels, removing the fraction parts by rounding up)
 - Reset item flow: match item flow line with the corresponding connection
+- Save and restore position: save the positions of connected edges and ports, really useful for resizing/movement of a block.
+ 
