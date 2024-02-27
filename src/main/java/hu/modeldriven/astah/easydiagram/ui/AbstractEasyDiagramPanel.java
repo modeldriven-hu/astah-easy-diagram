@@ -21,6 +21,7 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
     protected JButton resetItemFlowButton;
     protected JButton snapToPixelButton;
     protected JButton straightenLineButton;
+    protected JButton saveRestoreButton;
     protected JTextField topInputField;
     protected JTextField widthInputField;
 
@@ -46,6 +47,7 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
         matchAllPointsButton = new javax.swing.JButton();
         matchAllExceptEndPointsButton = new javax.swing.JButton();
         resetItemFlowButton = new javax.swing.JButton();
+        saveRestoreButton = new javax.swing.JButton();
 
         setLayout(new MigLayout(
                 "fillx, hidemode 3",
@@ -90,6 +92,9 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
 
         resetItemFlowButton.setText("Reset item flow");
         linePanel.add(resetItemFlowButton);
+
+        saveRestoreButton.setText("Save/restore position");
+        linePanel.add(saveRestoreButton);
 
         add(linePanel, "cell 0 1");
     }

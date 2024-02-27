@@ -6,7 +6,6 @@ import hu.modeldriven.astah.easydiagram.ui.usecase.*;
 import hu.modeldriven.core.eventbus.EventBus;
 
 import javax.swing.*;
-import java.io.IOException;
 
 public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
 
@@ -33,6 +32,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
         snapToPixelButton.addActionListener(e -> eventBus.publish(new SnapToPixelRequestedEvent()));
         straightenLineButton.addActionListener(e -> eventBus.publish(new StraightenLineRequestedEvent()));
         resetItemFlowButton.addActionListener(e -> eventBus.publish(new ResetItemFlowRequestedEvent()));
+        saveRestoreButton.addActionListener(e -> eventBus.publish(new SaveRestoreRequestedEvent()));
     }
 
     private void notifyBoundsChange(){
@@ -62,6 +62,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
         this.eventBus.subscribe(new SnapToPixelUseCase(eventBus, astah));
         this.eventBus.subscribe(new StraightenLineUseCase(eventBus, astah));
         this.eventBus.subscribe(new ResetItemFlowUseCase(eventBus, astah));
+        this.eventBus.subscribe(new SaveRestorePositionUseCase(eventBus, astah));
     }
 
 }
