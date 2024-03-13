@@ -29,10 +29,27 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
 
         applyButton.addActionListener(e -> notifyBoundsChange());
 
+        valueNameInputField.addActionListener(e -> notifyValueTypeChange());
+        valueTypeInputField.addActionListener(e -> notifyValueTypeChange());
+        valueConstraintInputField.addActionListener(e -> notifyValueTypeChange());
+
+        createValueButton.addActionListener(e -> {
+            notifyValueTypeChange();
+            eventBus.publish(new CreateValueTypeRequestedEvent());
+        });
+
         snapToPixelButton.addActionListener(e -> eventBus.publish(new SnapToPixelRequestedEvent()));
         straightenLineButton.addActionListener(e -> eventBus.publish(new StraightenLineRequestedEvent()));
         resetItemFlowButton.addActionListener(e -> eventBus.publish(new ResetItemFlowRequestedEvent()));
         saveRestoreButton.addActionListener(e -> eventBus.publish(new SaveRestoreRequestedEvent()));
+    }
+
+    private void notifyValueTypeChange(){
+        eventBus.publish(new ValueTypeChangedEvent(
+                valueNameInputField.getText(),
+                valueTypeInputField.getText(),
+                valueConstraintInputField.getText()
+        ));
     }
 
     private void notifyBoundsChange() {
@@ -63,6 +80,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
         this.eventBus.subscribe(new StraightenLineUseCase(eventBus, astah));
         this.eventBus.subscribe(new ResetItemFlowUseCase(eventBus, astah));
         this.eventBus.subscribe(new SaveRestorePositionUseCase(eventBus, astah, saveRestoreButton));
+        this.eventBus.subscribe(new CreateValueTypeUseCase(eventBus, astah));
     }
 
 }

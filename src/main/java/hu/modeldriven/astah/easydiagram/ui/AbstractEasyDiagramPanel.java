@@ -7,6 +7,7 @@ package hu.modeldriven.astah.easydiagram.ui;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
+import java.awt.Dimension;
 
 /**
  * @author zsolt
@@ -25,6 +26,14 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
     protected JTextField topInputField;
     protected JTextField widthInputField;
 
+    protected JTextField valueNameInputField;
+
+    protected JTextField valueTypeInputField;
+
+    protected JTextField valueConstraintInputField;
+
+    protected JButton createValueButton;
+
     public AbstractEasyDiagramPanel() {
         initComponents();
     }
@@ -41,6 +50,16 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
         JLabel jLabel5 = new javax.swing.JLabel();
         heightInputField = new javax.swing.JTextField();
         applyButton = new javax.swing.JButton();
+
+        JPanel createValuePanel = new javax.swing.JPanel();
+        JLabel valueNameLabel = new javax.swing.JLabel();
+        JLabel valueTypeLabel = new javax.swing.JLabel();
+        JLabel valueConstraintLabel = new javax.swing.JLabel();
+        valueNameInputField = new javax.swing.JTextField();
+        valueTypeInputField = new javax.swing.JTextField();
+        valueConstraintInputField = new javax.swing.JTextField();
+        createValueButton = new javax.swing.JButton();
+
         JPanel linePanel = new javax.swing.JPanel();
         snapToPixelButton = new javax.swing.JButton();
         straightenLineButton = new javax.swing.JButton();
@@ -82,6 +101,28 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
 
         add(coordinatePanel, "cell 0 0");
 
+        createValuePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Field"));
+        java.awt.FlowLayout flowLayout2 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 10);
+        flowLayout2.setAlignOnBaseline(true);
+        createValuePanel.setLayout(flowLayout2);
+
+        valueNameLabel.setText("Name:");
+        createValuePanel.add(valueNameLabel);
+        createValuePanel.add(valueNameInputField);
+
+        valueTypeLabel.setText("Type:");
+        createValuePanel.add(valueTypeLabel);
+        createValuePanel.add(valueTypeInputField);
+
+        valueConstraintLabel.setText("Constraint:");
+        createValuePanel.add(valueConstraintLabel);
+        createValuePanel.add(valueConstraintInputField);
+
+        createValueButton.setText("Create");
+        createValuePanel.add(createValueButton);
+
+        add(createValuePanel, "cell 0 1");
+
         linePanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEADING));
 
         snapToPixelButton.setText("Snap to pixel");
@@ -96,6 +137,6 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
         saveRestoreButton.setText("Save position");
         linePanel.add(saveRestoreButton);
 
-        add(linePanel, "cell 0 1");
+        add(linePanel, "cell 0 2");
     }
 }
