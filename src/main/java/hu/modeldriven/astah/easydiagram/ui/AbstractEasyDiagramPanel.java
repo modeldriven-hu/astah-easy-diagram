@@ -114,9 +114,10 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
         createValuePanel.add(valueTypeLabel);
         createValuePanel.add(valueTypeInputField);
 
-        valueConstraintLabel.setText("Constraint:");
-        createValuePanel.add(valueConstraintLabel);
-        createValuePanel.add(valueConstraintInputField);
+        // FIXME removed until we figure out how to create constraints
+//        valueConstraintLabel.setText("Constraint:");
+//        createValuePanel.add(valueConstraintLabel);
+//        createValuePanel.add(valueConstraintInputField);
 
         createValueButton.setText("Create");
         createValuePanel.add(createValueButton);

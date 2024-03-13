@@ -14,6 +14,7 @@ import hu.modeldriven.core.eventbus.Event;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.eventbus.EventHandler;
 
+import javax.swing.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,8 +34,6 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
     @Override
     public void handleEvent(Event event) {
 
-        System.err.println("CreateValueType event handler called");
-
         if (event instanceof ValueTypeChangedEvent) {
             ValueTypeChangedEvent e = (ValueTypeChangedEvent) event;
             this.name = e.name();
@@ -53,6 +52,11 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
 
             IValueType valueType = astah.findValueTypeByName(this.type);
 
+            if (valueType == null) {
+                JOptionPane.showMessageDialog(null,"Could not find a valueType with name " + type,"Could not find type", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
             SysmlModelEditor editor = astah.modelEditor();
             AstahTransaction transaction = new AstahTransaction();
 
@@ -66,7 +70,8 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
                                 IAttribute attribute = editor.createValueAttribute(block, this.name, valueType);
 
                                 if (constraint != null && !constraint.trim().isEmpty()) {
-                                    editor.createConstraint(attribute, constraint);
+                                    //editor.createConstraint(attribute, constraint);
+                                    // FIXME use constraint property?
                                 }
 
                             } catch (InvalidEditingException e) {
@@ -83,6 +88,8 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
                 this.eventBus.publish(new ExceptionOccurredEvent(e));
             }
 
+        } else {
+            JOptionPane.showMessageDialog(null,"Both name and type has to be entered","Missing name or type", JOptionPane.ERROR_MESSAGE);
         }
     }
 
