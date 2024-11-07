@@ -52,9 +52,7 @@ public class ResetItemFlowUseCase implements EventHandler<ResetItemFlowRequested
             ILinkPresentation finalItemFlow = itemFlow;
             ILinkPresentation finalConnector = connector;
 
-            transaction.execute(() -> {
-                astah.setPoints(finalItemFlow, finalConnector.getAllPoints());
-            });
+            transaction.execute(() -> astah.setPoints(finalItemFlow, finalConnector.getAllPoints()));
 
         } catch (TransactionFailedException e) {
             eventBus.publish(new ExceptionOccurredEvent(e));

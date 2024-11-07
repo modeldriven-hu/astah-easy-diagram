@@ -7,7 +7,6 @@ package hu.modeldriven.astah.easydiagram.ui;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
-import java.awt.Dimension;
 
 /**
  * @author zsolt
@@ -20,7 +19,9 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
     protected JButton matchAllExceptEndPointsButton;
     protected JButton matchAllPointsButton;
     protected JButton resetItemFlowButton;
-    protected JButton snapToPixelButton;
+    protected JButton snapSelectedElementsToPixelButton;
+    protected JButton snapDiagramToPixelButton;
+
     protected JButton straightenLineButton;
     protected JButton saveRestoreButton;
     protected JTextField topInputField;
@@ -61,7 +62,8 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
         createValueButton = new javax.swing.JButton();
 
         JPanel linePanel = new javax.swing.JPanel();
-        snapToPixelButton = new javax.swing.JButton();
+        snapSelectedElementsToPixelButton = new javax.swing.JButton();
+        snapDiagramToPixelButton = new javax.swing.JButton();
         straightenLineButton = new javax.swing.JButton();
         matchAllPointsButton = new javax.swing.JButton();
         matchAllExceptEndPointsButton = new javax.swing.JButton();
@@ -126,8 +128,11 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
 
         linePanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEADING));
 
-        snapToPixelButton.setText("Snap to pixel");
-        linePanel.add(snapToPixelButton);
+        snapSelectedElementsToPixelButton.setText("Snap selected to pixel");
+        linePanel.add(snapSelectedElementsToPixelButton);
+
+        snapDiagramToPixelButton.setText("Snap diagram to pixel");
+        linePanel.add(snapDiagramToPixelButton);
 
         straightenLineButton.setText("Straighten line");
         linePanel.add(straightenLineButton);

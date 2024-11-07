@@ -51,7 +51,7 @@ public class SaveRestorePositionUseCase implements EventHandler<SaveRestoreReque
             return;
         }
 
-        this.selectedNode = astah.selectedNodes().get(0);
+        this.selectedNode = astah.selectedNodes().getFirst();
 
         for (INodePresentation child : selectedNode.getChildren()) {
 

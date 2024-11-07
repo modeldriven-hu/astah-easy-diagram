@@ -2,7 +2,9 @@ package hu.modeldriven.astah.easydiagram.ui.usecase;
 
 import com.change_vision.jude.api.inf.editor.SysmlModelEditor;
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
-import com.change_vision.jude.api.inf.model.*;
+import com.change_vision.jude.api.inf.model.IAttribute;
+import com.change_vision.jude.api.inf.model.IBlock;
+import com.change_vision.jude.api.inf.model.IValueType;
 import com.change_vision.jude.api.inf.presentation.INodePresentation;
 import hu.modeldriven.astah.core.AstahRepresentation;
 import hu.modeldriven.astah.core.exception.AstahRuntimeException;
@@ -34,8 +36,7 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
     @Override
     public void handleEvent(Event event) {
 
-        if (event instanceof ValueTypeChangedEvent) {
-            ValueTypeChangedEvent e = (ValueTypeChangedEvent) event;
+        if (event instanceof ValueTypeChangedEvent e) {
             this.name = e.name();
             this.type = e.type();
             this.constraint = e.constraint();
@@ -47,13 +48,13 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
         }
     }
 
-    private void createValueType(){
+    private void createValueType() {
         if (this.name != null && this.type != null) {
 
             IValueType valueType = astah.findValueTypeByName(this.type);
 
             if (valueType == null) {
-                JOptionPane.showMessageDialog(null,"Could not find a valueType with name " + type,"Could not find type", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Could not find a valueType with name " + type, "Could not find type", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -63,8 +64,7 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
             try {
                 transaction.execute(() -> {
                     for (INodePresentation node : astah.selectedNodes()) {
-                        if (node.getModel() instanceof IBlock) {
-                            IBlock block = (IBlock) node.getModel();
+                        if (node.getModel() instanceof IBlock block) {
 
                             try {
                                 IAttribute attribute = editor.createValueAttribute(block, this.name, valueType);
@@ -89,7 +89,7 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
             }
 
         } else {
-            JOptionPane.showMessageDialog(null,"Both name and type has to be entered","Missing name or type", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Both name and type has to be entered", "Missing name or type", JOptionPane.ERROR_MESSAGE);
         }
     }
 

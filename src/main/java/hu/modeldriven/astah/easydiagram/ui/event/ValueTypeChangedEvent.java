@@ -8,7 +8,7 @@ public class ValueTypeChangedEvent implements Event {
     private final String type;
     private final String constraint;
 
-    public ValueTypeChangedEvent(String name, String type, String constraint){
+    public ValueTypeChangedEvent(String name, String type, String constraint) {
         this.name = name;
         this.type = type;
         this.constraint = constraint;

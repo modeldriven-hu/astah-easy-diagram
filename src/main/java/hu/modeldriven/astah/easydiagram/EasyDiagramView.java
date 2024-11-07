@@ -11,9 +11,7 @@ import hu.modeldriven.astah.easydiagram.ui.event.DiagramSelectionChangedEvent;
 import hu.modeldriven.core.eventbus.EventBus;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Container;
+import java.awt.*;
 
 public class EasyDiagramView extends JPanel implements IPluginExtraTabView, IEntitySelectionListener {
 
@@ -47,6 +45,11 @@ public class EasyDiagramView extends JPanel implements IPluginExtraTabView, IEnt
 
     @Override
     public void addSelectionListener(ISelectionListener listener) {
+        // nothing to do here
+    }
+
+    @Override
+    public void removeSelectionListener(ISelectionListener iSelectionListener) {
         // nothing to do here
     }
 

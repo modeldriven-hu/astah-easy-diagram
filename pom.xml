@@ -7,7 +7,7 @@
 		<plugin.install>true</plugin.install>
 		<astah.version>1.1</astah.version>
 		<astah.edition>sysml</astah.edition>
-		<astah.path>/usr/lib/astah_sysml</astah.path>
+		<astah.path>C:/Program Files/astah_sysml</astah.path>
 		<miglayout.version>3.7.4</miglayout.version>
 	</properties>
 	<modelVersion>4.0.0</modelVersion>
@@ -119,8 +119,8 @@
 				<version>2.3.2</version>
 				<configuration>
 					<encoding>UTF-8</encoding>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>21</source>
+					<target>21</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -134,12 +134,12 @@
 			<plugin>
 				<groupId>com.change_vision.astah</groupId>
 				<artifactId>astah-maven-plugin</artifactId>
-				<version>1.0.0</version>
+				<version>1.1.0</version>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.felix</groupId>
 				<artifactId>maven-bundle-plugin</artifactId>
-				<version>3.5.1</version>
+				<version>5.1.9</version>
 				<extensions>true</extensions>
 				<executions>
 					<execution>
@@ -157,18 +157,13 @@
 					<instructions>
 						<Bundle-SymbolicName>${bundle.symbolicName}; singleton:=true</Bundle-SymbolicName>
 						<Bundle-Version>${project.version}</Bundle-Version>
-						<!-- | assume public classes are in the top package, and private classes 
-							are under ".internal" -->
-						<!--<Export-Package>hu.modeldriven.*,${bundle.namespace}.*;version="${project.version}"</Export-Package>-->
-						<!--<Private-Package>${bundle.namespace}.internal.*</Private-Package>-->
-						<Export-Package>${bundle.namespace}.api.*;version="${project.version}"</Export-Package>
-						<Private-Package>hu.modeldriven.*</Private-Package>
 						<Bundle-Activator>${bundle.namespace}.Activator</Bundle-Activator>
 						<Astah-Version>${astah.version}</Astah-Version>
 						<Astah-Edition>${astah.edition}</Astah-Edition>
-						<!-- | each module can override these defaults in their osgi.bnd file -->
 						<_include>-osgi.bnd</_include>
-						<Embed-Dependency>*;scope=compile|runtime;type=!pom</Embed-Dependency>
+						<Embed-Dependency>
+							*;type=!pom;scope=!test;artifactId=!astah-api|org.osgi.core|org.osgi.compendium
+						</Embed-Dependency>
 						<Embed-Transitive>true</Embed-Transitive>
 					</instructions>
 				</configuration>
