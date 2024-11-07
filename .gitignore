@@ -33,3 +33,7 @@ target
 *.iml
 
 sonar.sh
+
+.classpath
+.project
+.settings

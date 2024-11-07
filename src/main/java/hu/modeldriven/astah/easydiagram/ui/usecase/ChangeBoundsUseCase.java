@@ -25,14 +25,14 @@ public class ChangeBoundsUseCase implements EventHandler<ChangeBoundsRequestedEv
     @Override
     public void handleEvent(ChangeBoundsRequestedEvent event) {
 
-        IDiagram diagram = astah.currentDiagram();
+        var diagram = astah.currentDiagram();
 
         if (diagram == null) {
             return;
         }
 
         astah.selectedNodes().stream().findFirst().ifPresent(node -> {
-            AstahTransaction transaction = new AstahTransaction();
+            var transaction = new AstahTransaction();
 
             try {
                 transaction.execute(() -> astah.setBounds(node, event.bounds()));

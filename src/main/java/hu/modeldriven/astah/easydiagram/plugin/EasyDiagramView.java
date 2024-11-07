@@ -1,4 +1,4 @@
-package hu.modeldriven.astah.easydiagram;
+package hu.modeldriven.astah.easydiagram.plugin;
 
 import com.change_vision.jude.api.inf.AstahAPI;
 import com.change_vision.jude.api.inf.ui.IPluginExtraTabView;
