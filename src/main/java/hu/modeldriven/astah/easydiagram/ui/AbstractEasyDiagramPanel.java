@@ -35,6 +35,9 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
 
     protected JButton createValueButton;
 
+    protected JButton horizontalCenterAlignButton;
+    protected JButton verticalCenterAlignButton;
+
     public AbstractEasyDiagramPanel() {
         initComponents();
     }
@@ -69,6 +72,8 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
         matchAllExceptEndPointsButton = new javax.swing.JButton();
         resetItemFlowButton = new javax.swing.JButton();
         saveRestoreButton = new javax.swing.JButton();
+        horizontalCenterAlignButton = new javax.swing.JButton();
+        verticalCenterAlignButton = new javax.swing.JButton();
 
         setLayout(new MigLayout(
                 "fillx, hidemode 3",
@@ -142,6 +147,12 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
 
         saveRestoreButton.setText("Save position");
         linePanel.add(saveRestoreButton);
+
+        horizontalCenterAlignButton.setText("Horizontal center align");
+        linePanel.add(horizontalCenterAlignButton);
+
+        verticalCenterAlignButton.setText("Vertical center align");
+        linePanel.add(verticalCenterAlignButton);
 
         add(linePanel, "cell 0 2");
     }

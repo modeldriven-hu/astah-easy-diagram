@@ -11,6 +11,7 @@ import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.eventbus.EventHandler;
 
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 import java.util.Collections;
 import java.util.List;
 
@@ -44,7 +45,21 @@ public class StraightenLineUseCase implements EventHandler<StraightenLineRequest
 
     public Point2D[] endPoints(ILinkPresentation link) {
         Point2D[] points = link.getAllPoints();
-        return new Point2D[]{points[0], points[points.length - 1]};
+
+        // Create a rectangle from the points
+
+        var rect = new Rectangle2D.Double(points[0].getX(), points[0].getY(), 0, 0);
+        rect.add(points[points.length - 1]);
+
+        if (rect.width > rect.height){
+            return new Point2D[]{
+                    new Point2D.Double(points[0].getX(), points[0].getY()),
+                    new Point2D.Double(points[points.length - 1].getX(), points[0].getY())};
+        } else {
+            return new Point2D[]{
+                    new Point2D.Double(points[0].getX(), points[0].getY()),
+                    new Point2D.Double(points[0].getX(), points[points.length - 1].getY())};
+        }
     }
 
     @Override

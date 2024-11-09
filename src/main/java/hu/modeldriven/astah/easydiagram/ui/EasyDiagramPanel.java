@@ -43,6 +43,8 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
         straightenLineButton.addActionListener(e -> eventBus.publish(new StraightenLineRequestedEvent()));
         resetItemFlowButton.addActionListener(e -> eventBus.publish(new ResetItemFlowRequestedEvent()));
         saveRestoreButton.addActionListener(e -> eventBus.publish(new SaveRestoreRequestedEvent()));
+        horizontalCenterAlignButton.addActionListener(e -> eventBus.publish(new AlignmentRequestedEvent(AlignmentRequestedEvent.Direction.HORIZONTAL_CENTER)));
+        verticalCenterAlignButton.addActionListener(e -> eventBus.publish(new AlignmentRequestedEvent(AlignmentRequestedEvent.Direction.VERTICAL_CENTER)));
     }
 
     private void notifyValueTypeChange() {
@@ -83,6 +85,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
         this.eventBus.subscribe(new ResetItemFlowUseCase(eventBus, astah));
         this.eventBus.subscribe(new SaveRestorePositionUseCase(eventBus, astah, saveRestoreButton));
         this.eventBus.subscribe(new CreateValueTypeUseCase(eventBus, astah));
+        this.eventBus.subscribe(new AlignUseCase(eventBus, astah));
     }
 
 }
