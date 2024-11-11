@@ -11,10 +11,8 @@ import com.change_vision.jude.api.inf.presentation.INodePresentation;
 import com.change_vision.jude.api.inf.presentation.IPresentation;
 import hu.modeldriven.astah.core.exception.AstahRuntimeException;
 
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -40,7 +38,7 @@ public class AstahRepresentation {
 
     }
 
-    public SysmlModelEditor modelEditor() throws AstahRuntimeException {
+    public SysmlModelEditor modelEditor() {
         try {
             return AstahAPI.getAstahAPI().getProjectAccessor().getModelEditorFactory().getSysmlModelEditor();
         } catch (Exception e) {
@@ -48,7 +46,7 @@ public class AstahRepresentation {
         }
     }
 
-    public IDiagram currentDiagram() throws AstahRuntimeException {
+    public IDiagram currentDiagram() {
         try {
             return AstahAPI.getAstahAPI()
                     .getViewManager()
@@ -59,15 +57,15 @@ public class AstahRepresentation {
         }
     }
 
-    public List<IEntity> selectedStructureElements() throws AstahRuntimeException{
+    public List<IEntity> selectedStructureElements() {
         try {
             return Arrays.asList(AstahAPI.getAstahAPI().getProjectAccessor().getViewManager().getProjectViewManager().getSelectedEntities());
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new AstahRuntimeException(e);
         }
     }
 
-    public List<IPresentation> selectedPresentations() throws AstahRuntimeException {
+    public List<IPresentation> selectedPresentations() {
         try {
             return Arrays.stream(AstahAPI.getAstahAPI()
                             .getViewManager()
@@ -80,14 +78,14 @@ public class AstahRepresentation {
         }
     }
 
-    public List<INodePresentation> selectedNodes() throws AstahRuntimeException {
+    public List<INodePresentation> selectedNodes() {
         return selectedPresentations().stream()
                 .filter(INodePresentation.class::isInstance)
                 .map(INodePresentation.class::cast)
                 .toList();
     }
 
-    public List<ILinkPresentation> selectedLinks() throws AstahRuntimeException {
+    public List<ILinkPresentation> selectedLinks() {
         return selectedPresentations().stream()
                 .filter(ILinkPresentation.class::isInstance)
                 .map(ILinkPresentation.class::cast)
@@ -113,17 +111,17 @@ public class AstahRepresentation {
     }
 
     public void selectCurrentDiagramElements() {
-        try{
+        try {
             AstahAPI.getAstahAPI()
                     .getViewManager()
                     .getDiagramViewManager()
                     .selectAll();
-        } catch (ClassNotFoundException | InvalidUsingException e){
+        } catch (ClassNotFoundException | InvalidUsingException e) {
             throw new AstahRuntimeException(e);
         }
     }
 
-    private ActivityDiagramEditor activityDiagramEditor(){
+    private ActivityDiagramEditor activityDiagramEditor() {
         try {
             return AstahAPI.getAstahAPI()
                     .getProjectAccessor()
@@ -134,22 +132,22 @@ public class AstahRepresentation {
         }
     }
 
-    public INodePresentation createAction(IActivityDiagram diagram, String name, Point2D location){
+    public INodePresentation createAction(IActivityDiagram diagram, String name, Point2D location) {
         try {
             var editor = activityDiagramEditor();
             editor.setDiagram(diagram);
             return editor.createAction(name, location);
-        } catch (InvalidEditingException e){
+        } catch (InvalidEditingException e) {
             throw new AstahRuntimeException(e);
         }
     }
 
-    public INodePresentation createPin(IActivityDiagram diagram, INodePresentation actionNode, String pinName, IClass pinType, boolean isInput, Point2D location){
+    public INodePresentation createPin(IActivityDiagram diagram, INodePresentation actionNode, String pinName, IClass pinType, boolean isInput, Point2D location) {
         try {
             var editor = activityDiagramEditor();
             editor.setDiagram(diagram);
             return editor.createPin(pinName, pinType, isInput, actionNode, location);
-        } catch (InvalidEditingException e){
+        } catch (InvalidEditingException e) {
             throw new AstahRuntimeException(e);
         }
     }
