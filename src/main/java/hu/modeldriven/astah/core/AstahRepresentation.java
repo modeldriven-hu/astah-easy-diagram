@@ -1,19 +1,20 @@
 package hu.modeldriven.astah.core;
 
 import com.change_vision.jude.api.inf.AstahAPI;
+import com.change_vision.jude.api.inf.editor.ActivityDiagramEditor;
 import com.change_vision.jude.api.inf.editor.SysmlModelEditor;
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
 import com.change_vision.jude.api.inf.exception.InvalidUsingException;
-import com.change_vision.jude.api.inf.model.IDiagram;
-import com.change_vision.jude.api.inf.model.INamedElement;
-import com.change_vision.jude.api.inf.model.IValueType;
+import com.change_vision.jude.api.inf.model.*;
 import com.change_vision.jude.api.inf.presentation.ILinkPresentation;
 import com.change_vision.jude.api.inf.presentation.INodePresentation;
 import com.change_vision.jude.api.inf.presentation.IPresentation;
 import hu.modeldriven.astah.core.exception.AstahRuntimeException;
 
+import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -54,6 +55,14 @@ public class AstahRepresentation {
                     .getDiagramViewManager()
                     .getCurrentDiagram();
         } catch (Exception e) {
+            throw new AstahRuntimeException(e);
+        }
+    }
+
+    public List<IEntity> selectedStructureElements() throws AstahRuntimeException{
+        try {
+            return Arrays.asList(AstahAPI.getAstahAPI().getProjectAccessor().getViewManager().getProjectViewManager().getSelectedEntities());
+        } catch (Exception e){
             throw new AstahRuntimeException(e);
         }
     }
@@ -113,4 +122,36 @@ public class AstahRepresentation {
             throw new AstahRuntimeException(e);
         }
     }
+
+    private ActivityDiagramEditor activityDiagramEditor(){
+        try {
+            return AstahAPI.getAstahAPI()
+                    .getProjectAccessor()
+                    .getDiagramEditorFactory()
+                    .getActivityDiagramEditor();
+        } catch (InvalidUsingException | ClassNotFoundException e) {
+            throw new AstahRuntimeException(e);
+        }
+    }
+
+    public INodePresentation createAction(IActivityDiagram diagram, String name, Point2D location){
+        try {
+            var editor = activityDiagramEditor();
+            editor.setDiagram(diagram);
+            return editor.createAction(name, location);
+        } catch (InvalidEditingException e){
+            throw new AstahRuntimeException(e);
+        }
+    }
+
+    public INodePresentation createPin(IActivityDiagram diagram, INodePresentation actionNode, String pinName, IClass pinType, boolean isInput, Point2D location){
+        try {
+            var editor = activityDiagramEditor();
+            editor.setDiagram(diagram);
+            return editor.createPin(pinName, pinType, isInput, actionNode, location);
+        } catch (InvalidEditingException e){
+            throw new AstahRuntimeException(e);
+        }
+    }
+
 }
