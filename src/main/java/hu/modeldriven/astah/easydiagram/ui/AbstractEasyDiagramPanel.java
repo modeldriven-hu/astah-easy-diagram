@@ -4,6 +4,7 @@
  */
 package hu.modeldriven.astah.easydiagram.ui;
 
+import hu.modeldriven.astah.easydiagram.ui.layout.WrapLayout;
 import net.miginfocom.swing.MigLayout;
 
 import javax.swing.*;
@@ -37,6 +38,9 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
 
     protected JButton horizontalCenterAlignButton;
     protected JButton verticalCenterAlignButton;
+
+    protected JButton unmarshallInputButton;
+    protected JButton unmarshallOutputButton;
 
     public AbstractEasyDiagramPanel() {
         initComponents();
@@ -74,6 +78,8 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
         saveRestoreButton = new javax.swing.JButton();
         horizontalCenterAlignButton = new javax.swing.JButton();
         verticalCenterAlignButton = new javax.swing.JButton();
+        unmarshallInputButton = new javax.swing.JButton();
+        unmarshallOutputButton = new javax.swing.JButton();
 
         setLayout(new MigLayout(
                 "fillx, hidemode 3",
@@ -131,7 +137,7 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
 
         add(createValuePanel, "cell 0 1");
 
-        linePanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEADING));
+        linePanel.setLayout(new WrapLayout());
 
         snapSelectedElementsToPixelButton.setText("Snap selected to pixel");
         linePanel.add(snapSelectedElementsToPixelButton);
@@ -153,6 +159,12 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
 
         verticalCenterAlignButton.setText("Vertical center align");
         linePanel.add(verticalCenterAlignButton);
+
+        unmarshallInputButton.setText("Unmarshall input");
+        linePanel.add(unmarshallInputButton);
+
+        unmarshallOutputButton.setText("Unmarshall output");
+        linePanel.add(unmarshallOutputButton);
 
         add(linePanel, "cell 0 2");
     }
