@@ -38,6 +38,11 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
             eventBus.publish(new CreateValueTypeRequestedEvent());
         });
 
+        setTimerButton.addActionListener(e -> {
+            int value = Integer.parseInt(timerInputField.getText());
+            eventBus.publish(new AutosaveDurationChangeRequestedEvent(value));
+        });
+
         snapSelectedElementsToPixelButton.addActionListener(e -> eventBus.publish(new SnapSelectedElementsToPixelRequestedEvent()));
         snapDiagramToPixelButton.addActionListener(e -> eventBus.publish(new SnapDiagramToPixelRequestedEvent()));
         straightenLineButton.addActionListener(e -> eventBus.publish(new StraightenLineRequestedEvent()));
@@ -89,6 +94,8 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
         this.eventBus.subscribe(new CreateValueTypeUseCase(eventBus, astah));
         this.eventBus.subscribe(new AlignUseCase(eventBus, astah));
         this.eventBus.subscribe(new UnmarshallPinsUseCase(eventBus, astah));
+        this.eventBus.subscribe(new SetAutosaveDurationUseCase(eventBus, astah));
+        this.eventBus.publish(new AutosaveDurationChangeRequestedEvent(120));
     }
 
 }

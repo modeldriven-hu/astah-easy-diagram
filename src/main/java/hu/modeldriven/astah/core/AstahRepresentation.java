@@ -152,4 +152,17 @@ public class AstahRepresentation {
         }
     }
 
+    public void saveProject(){
+        try {
+            var projectAccessor = AstahAPI.getAstahAPI().getProjectAccessor();
+
+            if (projectAccessor.hasProject()){
+                projectAccessor.save();
+            }
+
+        } catch (Exception e){
+            throw new AstahRuntimeException(e);
+        }
+    }
+
 }

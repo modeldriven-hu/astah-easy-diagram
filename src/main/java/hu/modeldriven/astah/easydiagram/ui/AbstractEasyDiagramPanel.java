@@ -36,6 +36,9 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
 
     protected JButton createValueButton;
 
+    protected JTextField timerInputField;
+    protected JButton setTimerButton;
+
     protected JButton horizontalCenterAlignButton;
     protected JButton verticalCenterAlignButton;
 
@@ -68,6 +71,11 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
         valueConstraintInputField = new javax.swing.JTextField();
         createValueButton = new javax.swing.JButton();
 
+        JPanel autoSavePanel = new javax.swing.JPanel();
+        JLabel timerLabel = new javax.swing.JLabel();
+        timerInputField = new javax.swing.JTextField();
+        setTimerButton = new javax.swing.JButton();
+
         JPanel linePanel = new javax.swing.JPanel();
         snapSelectedElementsToPixelButton = new javax.swing.JButton();
         snapDiagramToPixelButton = new javax.swing.JButton();
@@ -84,7 +92,7 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
         setLayout(new MigLayout(
                 "fillx, hidemode 3",
                 "[fill]",
-                "[][][]"
+                "[][][][]"
         ));
 
         coordinatePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Coordinate system"));
@@ -137,6 +145,20 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
 
         add(createValuePanel, "cell 0 1");
 
+        autoSavePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Coordinate system"));
+        java.awt.FlowLayout flowLayout3 = new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 10);
+        flowLayout3.setAlignOnBaseline(true);
+        autoSavePanel.setLayout(flowLayout3);
+
+        timerLabel.setText("Autosave in seconds:");
+        autoSavePanel.add(timerLabel);
+        autoSavePanel.add(timerInputField);
+
+        setTimerButton.setText("Set timer");
+        autoSavePanel.add(setTimerButton);
+
+        add(autoSavePanel, "cell 0 2");
+
         linePanel.setLayout(new WrapLayout());
 
         snapSelectedElementsToPixelButton.setText("Snap selected to pixel");
@@ -166,6 +188,6 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
         unmarshallOutputButton.setText("Unmarshall output");
         linePanel.add(unmarshallOutputButton);
 
-        add(linePanel, "cell 0 2");
+        add(linePanel, "cell 0 3");
     }
 }
