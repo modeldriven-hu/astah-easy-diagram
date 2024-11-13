@@ -95,7 +95,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
         this.eventBus.subscribe(new AlignUseCase(eventBus, astah));
         this.eventBus.subscribe(new UnmarshallPinsUseCase(eventBus, astah));
         this.eventBus.subscribe(new SetAutosaveDurationUseCase(eventBus, astah));
-        this.eventBus.publish(new AutosaveDurationChangeRequestedEvent(300));
+        //this.eventBus.publish(new AutosaveDurationChangeRequestedEvent(300));
     }
 
 }
