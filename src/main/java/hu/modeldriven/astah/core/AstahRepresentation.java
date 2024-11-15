@@ -146,7 +146,17 @@ public class AstahRepresentation {
         try {
             var editor = activityDiagramEditor();
             editor.setDiagram(diagram);
-            var flow = editor.createFlow(source, target);
+            editor.createFlow(source, target);
+        } catch (InvalidEditingException e) {
+            throw new AstahRuntimeException(e);
+        }
+    }
+
+    public void deleteLink(IActivityDiagram diagram, ILinkPresentation link) {
+        try {
+            var editor = activityDiagramEditor();
+            editor.setDiagram(diagram);
+            editor.deletePresentation(link);
         } catch (InvalidEditingException e) {
             throw new AstahRuntimeException(e);
         }
