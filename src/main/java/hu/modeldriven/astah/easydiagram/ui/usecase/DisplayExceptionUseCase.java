@@ -16,22 +16,26 @@ public class DisplayExceptionUseCase implements EventHandler<ExceptionOccurredEv
     @Override
     public void handleEvent(ExceptionOccurredEvent exceptionOccurredEvent) {
 
-        StringWriter stringWriter = new StringWriter();
-        exceptionOccurredEvent.exception().printStackTrace(new PrintWriter(stringWriter));
+        SwingUtilities.invokeLater(() -> {
 
-        JTextArea text = new JTextArea();
-        text.setEditable(false);
-        text.setText(stringWriter.toString());
-        text.setCaretPosition(0);
+            StringWriter stringWriter = new StringWriter();
+            exceptionOccurredEvent.exception().printStackTrace(new PrintWriter(stringWriter));
 
-        JScrollPane scrollPane = new JScrollPane(text);
-        scrollPane.setPreferredSize(new Dimension(400, 400));
+            JTextArea text = new JTextArea();
+            text.setEditable(false);
+            text.setText(stringWriter.toString());
+            text.setCaretPosition(0);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BorderLayout());
-        panel.add(scrollPane, BorderLayout.CENTER);
+            JScrollPane scrollPane = new JScrollPane(text);
+            scrollPane.setPreferredSize(new Dimension(400, 400));
 
-        JOptionPane.showMessageDialog(null, panel, "Exception occurred!", JOptionPane.ERROR_MESSAGE);
+            JPanel panel = new JPanel();
+            panel.setLayout(new BorderLayout());
+            panel.add(scrollPane, BorderLayout.CENTER);
+
+            JOptionPane.showMessageDialog(null, panel, "Exception occurred!", JOptionPane.ERROR_MESSAGE);
+
+        });
     }
 
 

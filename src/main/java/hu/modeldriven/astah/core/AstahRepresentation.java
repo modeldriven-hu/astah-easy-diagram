@@ -132,6 +132,26 @@ public class AstahRepresentation {
         }
     }
 
+    public INodePresentation createObjectNode(IActivityDiagram diagram, String name, IValueType type, Point2D location) {
+        try {
+            var editor = activityDiagramEditor();
+            editor.setDiagram(diagram);
+            return editor.createObjectNode(name, type, location);
+        } catch (InvalidEditingException e) {
+            throw new AstahRuntimeException(e);
+        }
+    }
+
+    public void createObjectFlow(IActivityDiagram diagram, INodePresentation source, INodePresentation target) {
+        try {
+            var editor = activityDiagramEditor();
+            editor.setDiagram(diagram);
+            var flow = editor.createFlow(source, target);
+        } catch (InvalidEditingException e) {
+            throw new AstahRuntimeException(e);
+        }
+    }
+
     public INodePresentation createAction(IActivityDiagram diagram, String name, Point2D location) {
         try {
             var editor = activityDiagramEditor();
