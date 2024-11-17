@@ -1,7 +1,7 @@
 package hu.modeldriven.astah.easydiagram.plugin;
 
 import com.change_vision.jude.api.inf.AstahAPI;
-import com.change_vision.jude.api.inf.ui.IPluginExtraTabView;
+import com.change_vision.jude.api.inf.ui.IPluginTabView;
 import com.change_vision.jude.api.inf.ui.ISelectionListener;
 import com.change_vision.jude.api.inf.view.IDiagramViewManager;
 import com.change_vision.jude.api.inf.view.IEntitySelectionEvent;
@@ -13,34 +13,12 @@ import hu.modeldriven.core.eventbus.EventBus;
 import javax.swing.*;
 import java.awt.*;
 
-public class EasyDiagramView extends JPanel implements IPluginExtraTabView, IEntitySelectionListener {
+public class EasyDiagramView extends JPanel implements IPluginTabView, IEntitySelectionListener {
 
     private final EventBus eventBus;
 
     public EasyDiagramView() {
         this.eventBus = new EventBus();
-        initComponents();
-    }
-
-    private void initComponents() {
-        setLayout(new BorderLayout());
-        add(createContentPane(), BorderLayout.CENTER);
-    }
-
-    private Container createContentPane() {
-
-        try {
-            IDiagramViewManager viewManager = AstahAPI.getAstahAPI()
-                    .getViewManager()
-                    .getDiagramViewManager();
-
-            viewManager.addEntitySelectionListener(this);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return new EasyDiagramPanel(eventBus);
     }
 
     @Override
@@ -59,6 +37,30 @@ public class EasyDiagramView extends JPanel implements IPluginExtraTabView, IEnt
     }
 
     @Override
+    public Object[] getSelectedModels() {
+        return new Object[0];
+    }
+
+    @Override
+    public void initTreeModel() {
+        setLayout(new BorderLayout());
+
+        try {
+            IDiagramViewManager viewManager = AstahAPI.getAstahAPI()
+                    .getViewManager()
+                    .getDiagramViewManager();
+
+            viewManager.addEntitySelectionListener(this);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        var panel = new EasyDiagramPanel(eventBus);
+        add(panel, BorderLayout.CENTER);
+    }
+
+    @Override
     public String getDescription() {
         return "Easy Diagram View";
     }
@@ -66,14 +68,6 @@ public class EasyDiagramView extends JPanel implements IPluginExtraTabView, IEnt
     @Override
     public String getTitle() {
         return "Easy Diagram";
-    }
-
-    public void activated() {
-        // nothing to do here
-    }
-
-    public void deactivated() {
-        // nothing to do here
     }
 
     @Override

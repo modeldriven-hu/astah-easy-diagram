@@ -3,7 +3,7 @@
     <extension point="com.change_vision.astah.ui.view">
         <view
                 id="hu.modeldriven.astah.easydiagram.plugin.EasyDiagramView"
-                type="extraTab"
+                type="tabView"
                 class="hu.modeldriven.astah.easydiagram.plugin.EasyDiagramView"/>
     </extension>
 </plugin>
