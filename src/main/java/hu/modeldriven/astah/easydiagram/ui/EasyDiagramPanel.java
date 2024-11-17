@@ -53,6 +53,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
         unmarshallInputButton.addActionListener(e -> eventBus.publish(new UnmarshallPinsRequestedEvent(UnmarshallPinsRequestedEvent.PinDirection.IN)));
         unmarshallOutputButton.addActionListener(e -> eventBus.publish(new UnmarshallPinsRequestedEvent(UnmarshallPinsRequestedEvent.PinDirection.OUT)));
         splitObjectFlowButton.addActionListener(e -> eventBus.publish(new SplitObjectFlowRequestedEvent()));
+        statisticsButton.addActionListener(e -> eventBus.publish(new DisplayStatisticsRequestedEvent()));
     }
 
     private void notifyValueTypeChange() {
@@ -97,6 +98,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
         this.eventBus.subscribe(new UnmarshallPinsUseCase(eventBus, astah));
         this.eventBus.subscribe(new SetAutosaveDurationUseCase(eventBus, astah));
         this.eventBus.subscribe(new SplitObjectFlowUseCase(eventBus, astah));
+        this.eventBus.subscribe(new DisplayStatisticsUseCase(eventBus, astah));
     }
 
 }

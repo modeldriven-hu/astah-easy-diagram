@@ -13,8 +13,7 @@ import hu.modeldriven.astah.core.exception.AstahRuntimeException;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class AstahRepresentation {
 
@@ -182,17 +181,63 @@ public class AstahRepresentation {
         }
     }
 
-    public void saveProject(){
+    public void saveProject() {
         try {
             var projectAccessor = AstahAPI.getAstahAPI().getProjectAccessor();
 
-            if (projectAccessor.hasProject()){
+            if (projectAccessor.hasProject()) {
                 projectAccessor.save();
             }
 
-        } catch (Exception e){
+        } catch (Exception e) {
             throw new AstahRuntimeException(e);
         }
     }
+
+    public List<INamedElement> allElements() {
+        try {
+            var elements = AstahAPI.getAstahAPI()
+                    .getProjectAccessor()
+                    .findElements(INamedElement.class);
+
+            if (elements == null) {
+                return Collections.emptyList();
+            }
+
+            return Arrays.asList(elements);
+
+        } catch (Exception e) {
+            throw new AstahRuntimeException(e);
+        }
+    }
+
+    public Set<IDiagram> allDiagrams() {
+        try {
+            var list = new HashSet<IDiagram>();
+
+            var projectAccessor = AstahAPI.getAstahAPI().getProjectAccessor();
+            var currentProject = projectAccessor.getCurrentProject();
+            var diagrams = currentProject.getDiagrams();
+
+            // add all diagrams owned by the project
+
+            if (diagrams != null) {
+                Collections.addAll(list, diagrams);
+            }
+
+            // add all diagrams owned by a model element which is not a package (like IBDs)
+
+            for (var element : allElements()) {
+                if (element.getDiagrams() != null) {
+                    Collections.addAll(list, element.getDiagrams());
+                }
+            }
+
+            return list;
+        } catch (Exception e) {
+            throw new AstahRuntimeException(e);
+        }
+    }
+
 
 }

@@ -45,6 +45,7 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
     protected JButton unmarshallInputButton;
     protected JButton unmarshallOutputButton;
     protected JButton splitObjectFlowButton;
+    protected JButton statisticsButton;
 
     public AbstractEasyDiagramPanel() {
         initComponents();
@@ -90,6 +91,7 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
         unmarshallInputButton = new javax.swing.JButton();
         unmarshallOutputButton = new javax.swing.JButton();
         splitObjectFlowButton = new javax.swing.JButton();
+        statisticsButton = new javax.swing.JButton();
 
         setLayout(new MigLayout(
                 "fillx, hidemode 3",
@@ -192,6 +194,9 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
 
         splitObjectFlowButton.setText("Split object flow");
         linePanel.add(splitObjectFlowButton);
+
+        statisticsButton.setText("Statistics");
+        linePanel.add(statisticsButton);
 
         add(linePanel, "cell 0 3");
     }
