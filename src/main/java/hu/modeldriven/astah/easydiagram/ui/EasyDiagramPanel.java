@@ -31,7 +31,6 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
 
         valueNameInputField.addActionListener(e -> notifyValueTypeChange());
         valueTypeInputField.addActionListener(e -> notifyValueTypeChange());
-        valueConstraintInputField.addActionListener(e -> notifyValueTypeChange());
 
         createValueButton.addActionListener(e -> {
             notifyValueTypeChange();
@@ -59,9 +58,8 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
     private void notifyValueTypeChange() {
         eventBus.publish(new ValueTypeChangedEvent(
                 valueNameInputField.getText(),
-                valueTypeInputField.getText(),
-                valueConstraintInputField.getText()
-        ));
+                valueTypeInputField.getText())
+        );
     }
 
     private void notifyBoundsChange() {

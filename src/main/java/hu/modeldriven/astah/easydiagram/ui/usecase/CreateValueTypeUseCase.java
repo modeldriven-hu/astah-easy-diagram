@@ -25,7 +25,6 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
     private final EventBus eventBus;
     String name;
     String type;
-    String constraint;
 
     public CreateValueTypeUseCase(EventBus eventBus, AstahRepresentation astah) {
         this.eventBus = eventBus;
@@ -38,7 +37,6 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
         if (event instanceof ValueTypeChangedEvent e) {
             this.name = e.name();
             this.type = e.type();
-            this.constraint = e.constraint();
             return;
         }
 
@@ -67,12 +65,6 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
 
                             try {
                                 IAttribute attribute = editor.createValueAttribute(block, this.name, valueType);
-
-                                if (constraint != null && !constraint.trim().isEmpty()) {
-                                    //editor.createConstraint(attribute, constraint);
-                                    // FIXME use constraint property?
-                                }
-
                             } catch (InvalidEditingException e) {
                                 e.printStackTrace();
                                 throw new AstahRuntimeException(e);
