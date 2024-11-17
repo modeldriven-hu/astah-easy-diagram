@@ -12,17 +12,20 @@ import java.util.List;
 public class UpdateBoundariesOnSelectionUseCase implements EventHandler<DiagramSelectionChangedEvent> {
 
     private final AstahRepresentation astah;
+    private final JTabbedPane tabbedPanel;
     private final JTextField leftInputField;
     private final JTextField topInputField;
     private final JTextField widthInputField;
     private final JTextField heightInputField;
 
     public UpdateBoundariesOnSelectionUseCase(AstahRepresentation astah,
+                                              JTabbedPane tabbedPanel,
                                               JTextField leftInputField,
                                               JTextField topInputField,
                                               JTextField widthInputField,
                                               JTextField heightInputField) {
         this.astah = astah;
+        this.tabbedPanel = tabbedPanel;
         this.leftInputField = leftInputField;
         this.topInputField = topInputField;
         this.widthInputField = widthInputField;
@@ -32,6 +35,10 @@ public class UpdateBoundariesOnSelectionUseCase implements EventHandler<DiagramS
     @Override
     public void handleEvent(DiagramSelectionChangedEvent event) {
         if (astah.currentDiagram() == null) {
+            return;
+        }
+
+        if (tabbedPanel.getSelectedIndex() != 0) {
             return;
         }
 

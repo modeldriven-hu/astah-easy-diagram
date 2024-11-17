@@ -369,7 +369,7 @@ public class AbstractEasyDiagramPanel extends javax.swing.JPanel {
     protected javax.swing.JButton splitObjectFlowButton;
     protected javax.swing.JButton statisticsButton;
     protected javax.swing.JButton straightenLineButton;
-    private javax.swing.JTabbedPane tabbedPanel;
+    protected javax.swing.JTabbedPane tabbedPanel;
     protected javax.swing.JTextField timerInputField;
     private javax.swing.JLabel timerLabel;
     protected javax.swing.JTextField topInputField;

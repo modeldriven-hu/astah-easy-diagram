@@ -78,6 +78,11 @@ public class UnmarshallPinsUseCase implements EventHandler<UnmarshallPinsRequest
                     var y = location.getY() + PIN_GAP;
 
                     for (var attribute : supportedElement.attributes()) {
+
+                        if (attribute.getName() == null || attribute.getName().isBlank()) {
+                            continue;
+                        }
+
                         var pin = astah.createPin(
                                 activityDiagram,
                                 action,
@@ -104,7 +109,7 @@ public class UnmarshallPinsUseCase implements EventHandler<UnmarshallPinsRequest
 
     private void resizeAction(int count, INodePresentation action) throws InvalidEditingException {
         action.setWidth(ACTION_WIDTH);
-        action.setHeight(count * (PIN_HEIGHT + PIN_GAP));
+        action.setHeight(count * (PIN_HEIGHT + PIN_GAP) + PIN_GAP);
     }
 
     @Override
