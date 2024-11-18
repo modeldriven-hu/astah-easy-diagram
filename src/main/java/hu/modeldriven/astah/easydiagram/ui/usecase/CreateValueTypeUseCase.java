@@ -1,16 +1,8 @@
 package hu.modeldriven.astah.easydiagram.ui.usecase;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.swing.JOptionPane;
-
 import com.change_vision.jude.api.inf.exception.InvalidEditingException;
-import com.change_vision.jude.api.inf.model.IAttribute;
 import com.change_vision.jude.api.inf.model.IBlock;
-
 import hu.modeldriven.astah.core.AstahRepresentation;
-import hu.modeldriven.astah.core.exception.AstahRuntimeException;
 import hu.modeldriven.astah.core.transaction.AstahTransaction;
 import hu.modeldriven.astah.easydiagram.ui.event.CreateValueTypeRequestedEvent;
 import hu.modeldriven.astah.easydiagram.ui.event.ExceptionOccurredEvent;
@@ -18,6 +10,10 @@ import hu.modeldriven.astah.easydiagram.ui.event.ValueTypeChangedEvent;
 import hu.modeldriven.core.eventbus.Event;
 import hu.modeldriven.core.eventbus.EventBus;
 import hu.modeldriven.core.eventbus.EventHandler;
+
+import javax.swing.*;
+import java.util.Arrays;
+import java.util.List;
 
 public class CreateValueTypeUseCase implements EventHandler<Event> {
 
@@ -62,12 +58,16 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
                 transaction.execute(() -> {
                     for (var node : astah.selectedNodes()) {
                         if (node.getModel() instanceof IBlock block) {
-
                             try {
-                                IAttribute attribute = editor.createValueAttribute(block, this.name, valueType);
+                                 editor.createValueAttribute(block, this.name, valueType);
                             } catch (InvalidEditingException e) {
-                                e.printStackTrace();
-                                throw new AstahRuntimeException(e);
+                                SwingUtilities.invokeLater(()->
+                                JOptionPane.showMessageDialog(
+                                        null,
+                                        e.getMessage(),
+                                        "Failed to create value type for block " + block.getName(),
+                                        JOptionPane.ERROR_MESSAGE
+                                ));
                             }
                         }
                     }
@@ -75,7 +75,6 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
                 });
 
             } catch (Exception e) {
-                e.printStackTrace();
                 this.eventBus.publish(new ExceptionOccurredEvent(e));
             }
 
