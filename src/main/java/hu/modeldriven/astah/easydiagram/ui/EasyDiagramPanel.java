@@ -85,7 +85,7 @@ public class EasyDiagramPanel extends AbstractEasyDiagramPanel {
     private void initUseCases() {
         this.eventBus.subscribe(new DisplayExceptionUseCase());
         this.eventBus.subscribe(new ChangeBoundsUseCase(eventBus, astah));
-        this.eventBus.subscribe(new UpdateBoundariesOnSelectionUseCase(astah, tabbedPanel, leftInputField, topInputField, widthInputField, heightInputField));
+        this.eventBus.subscribe(new UpdateBoundariesOnSelectionUseCase(astah, tabbedPanel, idInputField, leftInputField, topInputField, widthInputField, heightInputField));
         this.eventBus.subscribe(new SnapSelectedElementsToPixelUseCase(eventBus, astah));
         this.eventBus.subscribe(new SnapEveryDiagramElementToPixelUseCase(eventBus, astah));
         this.eventBus.subscribe(new StraightenLineUseCase(eventBus, astah));

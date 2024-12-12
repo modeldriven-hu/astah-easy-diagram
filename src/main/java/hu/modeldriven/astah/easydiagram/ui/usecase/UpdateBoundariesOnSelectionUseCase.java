@@ -13,6 +13,7 @@ public class UpdateBoundariesOnSelectionUseCase implements EventHandler<DiagramS
 
     private final AstahRepresentation astah;
     private final JTabbedPane tabbedPanel;
+    private final JTextField idInputField;
     private final JTextField leftInputField;
     private final JTextField topInputField;
     private final JTextField widthInputField;
@@ -20,12 +21,14 @@ public class UpdateBoundariesOnSelectionUseCase implements EventHandler<DiagramS
 
     public UpdateBoundariesOnSelectionUseCase(AstahRepresentation astah,
                                               JTabbedPane tabbedPanel,
+                                              JTextField idInputField,
                                               JTextField leftInputField,
                                               JTextField topInputField,
                                               JTextField widthInputField,
                                               JTextField heightInputField) {
         this.astah = astah;
         this.tabbedPanel = tabbedPanel;
+        this.idInputField = idInputField;
         this.leftInputField = leftInputField;
         this.topInputField = topInputField;
         this.widthInputField = widthInputField;
@@ -42,7 +45,8 @@ public class UpdateBoundariesOnSelectionUseCase implements EventHandler<DiagramS
             return;
         }
 
-        if (astah.selectedNodes().isEmpty()) {
+        if (astah.selectedNodes().isEmpty() && astah.selectedLinks().isEmpty()) {
+            this.idInputField.setText("");
             this.leftInputField.setText("");
             this.topInputField.setText("");
             this.widthInputField.setText("");
@@ -50,12 +54,21 @@ public class UpdateBoundariesOnSelectionUseCase implements EventHandler<DiagramS
             return;
         }
 
-        astah.selectedNodes().stream().findFirst().ifPresent(node -> {
-            this.leftInputField.setText(String.valueOf(node.getLocation().getX()));
-            this.topInputField.setText(String.valueOf(node.getLocation().getY()));
-            this.widthInputField.setText(String.valueOf(node.getWidth()));
-            this.heightInputField.setText(String.valueOf(node.getHeight()));
-        });
+        if (!astah.selectedNodes().isEmpty()) {
+            astah.selectedNodes().stream().findFirst().ifPresent(node -> {
+                var id = node.getModel().getId();
+                this.idInputField.setText(id.substring(id.indexOf("#") + 1));
+                this.leftInputField.setText(String.valueOf(node.getLocation().getX()));
+                this.topInputField.setText(String.valueOf(node.getLocation().getY()));
+                this.widthInputField.setText(String.valueOf(node.getWidth()));
+                this.heightInputField.setText(String.valueOf(node.getHeight()));
+            });
+        } else if (!astah.selectedLinks().isEmpty()){
+            astah.selectedLinks().stream().findFirst().ifPresent(link -> {
+                var id = link.getModel().getId();
+                this.idInputField.setText(id.substring(id.indexOf("#") + 1));
+            });
+        }
 
     }
 

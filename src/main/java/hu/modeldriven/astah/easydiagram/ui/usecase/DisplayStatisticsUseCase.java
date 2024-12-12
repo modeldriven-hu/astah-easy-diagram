@@ -1,5 +1,6 @@
 package hu.modeldriven.astah.easydiagram.ui.usecase;
 
+import com.change_vision.jude.api.inf.AstahAPI;
 import hu.modeldriven.astah.core.AstahRepresentation;
 import hu.modeldriven.astah.easydiagram.ui.event.DisplayStatisticsRequestedEvent;
 import hu.modeldriven.core.eventbus.Event;
@@ -22,7 +23,6 @@ public class DisplayStatisticsUseCase implements EventHandler<DisplayStatisticsR
     @Override
     public void handleEvent(DisplayStatisticsRequestedEvent event) {
         SwingUtilities.invokeLater(() -> {
-
             var elementCount = astah.allElements().size();
             var diagramCount = astah.allDiagrams().size();
 
