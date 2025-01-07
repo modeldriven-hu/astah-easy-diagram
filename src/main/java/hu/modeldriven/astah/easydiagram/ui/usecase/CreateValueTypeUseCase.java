@@ -47,7 +47,12 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
             var valueType = astah.findValueTypeByName(this.type);
 
             if (valueType == null) {
-                JOptionPane.showMessageDialog(null, "Could not find a valueType with name " + type, "Could not find type", JOptionPane.ERROR_MESSAGE);
+                SwingUtilities.invokeLater( () -> {
+                    JOptionPane.showMessageDialog(null,
+                            "Could not find a valueType with name " + type,
+                            "Could not find type",
+                            JOptionPane.ERROR_MESSAGE);
+                });
                 return;
             }
 
@@ -79,7 +84,13 @@ public class CreateValueTypeUseCase implements EventHandler<Event> {
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Both name and type has to be entered", "Missing name or type", JOptionPane.ERROR_MESSAGE);
+            SwingUtilities.invokeLater( () -> {
+                        JOptionPane.showMessageDialog(null,
+                                "Both name and type has to be entered",
+                                "Missing name or type",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+            );
         }
     }
 

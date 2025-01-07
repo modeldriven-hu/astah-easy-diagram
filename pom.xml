@@ -13,7 +13,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hu.modeldriven</groupId>
 	<artifactId>astah-easy-diagram</artifactId>
-	<version>1.7.2</version>
+	<version>1.7.3</version>
 	<packaging>jar</packaging>
 	<name>Astah Easy Diagram</name>
 	<description>A diagramming plugin</description>

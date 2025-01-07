@@ -45,30 +45,34 @@ public class UpdateBoundariesOnSelectionUseCase implements EventHandler<DiagramS
             return;
         }
 
-        if (astah.selectedNodes().isEmpty() && astah.selectedLinks().isEmpty()) {
-            this.idInputField.setText("");
-            this.leftInputField.setText("");
-            this.topInputField.setText("");
-            this.widthInputField.setText("");
-            this.heightInputField.setText("");
-            return;
-        }
+        SwingUtilities.invokeLater( () -> {
 
-        if (!astah.selectedNodes().isEmpty()) {
-            astah.selectedNodes().stream().findFirst().ifPresent(node -> {
-                var id = node.getModel().getId();
-                this.idInputField.setText(id.substring(id.indexOf("#") + 1));
-                this.leftInputField.setText(String.valueOf(node.getLocation().getX()));
-                this.topInputField.setText(String.valueOf(node.getLocation().getY()));
-                this.widthInputField.setText(String.valueOf(node.getWidth()));
-                this.heightInputField.setText(String.valueOf(node.getHeight()));
-            });
-        } else if (!astah.selectedLinks().isEmpty()){
-            astah.selectedLinks().stream().findFirst().ifPresent(link -> {
-                var id = link.getModel().getId();
-                this.idInputField.setText(id.substring(id.indexOf("#") + 1));
-            });
-        }
+            if (astah.selectedNodes().isEmpty() && astah.selectedLinks().isEmpty()) {
+                this.idInputField.setText("");
+                this.leftInputField.setText("");
+                this.topInputField.setText("");
+                this.widthInputField.setText("");
+                this.heightInputField.setText("");
+                return;
+            }
+
+            if (!astah.selectedNodes().isEmpty()) {
+                astah.selectedNodes().stream().findFirst().ifPresent(node -> {
+                    var id = node.getModel().getId();
+                    this.idInputField.setText(id.substring(id.indexOf("#") + 1));
+                    this.leftInputField.setText(String.valueOf(node.getLocation().getX()));
+                    this.topInputField.setText(String.valueOf(node.getLocation().getY()));
+                    this.widthInputField.setText(String.valueOf(node.getWidth()));
+                    this.heightInputField.setText(String.valueOf(node.getHeight()));
+                });
+            } else if (!astah.selectedLinks().isEmpty()) {
+                astah.selectedLinks().stream().findFirst().ifPresent(link -> {
+                    var id = link.getModel().getId();
+                    this.idInputField.setText(id.substring(id.indexOf("#") + 1));
+                });
+            }
+
+        });
 
     }
 
