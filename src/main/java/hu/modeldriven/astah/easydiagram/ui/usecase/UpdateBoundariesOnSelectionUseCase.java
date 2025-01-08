@@ -58,6 +58,11 @@ public class UpdateBoundariesOnSelectionUseCase implements EventHandler<DiagramS
 
             if (!astah.selectedNodes().isEmpty()) {
                 astah.selectedNodes().stream().findFirst().ifPresent(node -> {
+
+                    if (node.getModel() == null){
+                        return;
+                    }
+
                     var id = node.getModel().getId();
                     this.idInputField.setText(id.substring(id.indexOf("#") + 1));
                     this.leftInputField.setText(String.valueOf(node.getLocation().getX()));
