@@ -72,6 +72,11 @@ public class UpdateBoundariesOnSelectionUseCase implements EventHandler<DiagramS
                 });
             } else if (!astah.selectedLinks().isEmpty()) {
                 astah.selectedLinks().stream().findFirst().ifPresent(link -> {
+
+                    if (link.getModel() == null){
+                        return;
+                    }
+
                     var id = link.getModel().getId();
                     this.idInputField.setText(id.substring(id.indexOf("#") + 1));
                 });
